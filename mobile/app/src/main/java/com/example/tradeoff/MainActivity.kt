@@ -4,40 +4,43 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
-import com.example.tradeoff.ui.theme.DashboardScreen
-import com.example.tradeoff.ui.theme.LoginScreen
-import com.example.tradeoff.ui.theme.RegisterScreen
-import com.example.tradeoff.utils.SessionManager
+import com.example.tradeoff.ui.theme.*
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
+            TradeOffTheme {
 
-            var screen by remember { mutableStateOf("login") }
+                var screen by remember { mutableStateOf("landing") }
 
-            val token = SessionManager(this).getToken()
-            if (token != null) screen = "dashboard"
+                when (screen) {
 
-            when (screen) {
+                    "landing" -> LandingScreen(
+                        context = this,
+                        onGoLogin = { screen = "login" },
+                        onGoRegister = { screen = "register" }
+                    )
 
-                "login" -> LoginScreen(
-                    context = this,
-                    onLoginSuccess = { screen = "dashboard" },
-                    onGoRegister = { screen = "register" }
-                )
+                    "login" -> LoginScreen(
+                        context = this,
+                        onLoginSuccess = { screen = "dashboard" },
+                        onBackLanding = { screen = "landing" },
+                        onGoRegister = { screen = "register" }
+                    )
 
-                "register" -> RegisterScreen(
-                    context = this,
-                    onRegisterSuccess = { screen = "login" }
-                )
+                    "register" -> RegisterScreen(
+                        context = this,
+                        onRegisterSuccess = { screen = "login" },
+                        onBackLanding = { screen = "landing" }
+                    )
 
-                "dashboard" -> DashboardScreen(
-                    context = this,
-                    onLogout = { screen = "login" }
-                )
+                    "dashboard" -> DashboardScreen(
+                        context = this,
+                        onLogout = { screen = "landing" }
+                    )
+                }
             }
         }
     }
