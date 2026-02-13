@@ -1,4 +1,6 @@
 package com.example.tradeoff.model
 
-class AuthRequest {
-}
+data class AuthRequest(
+    val email: String,
+    val password: String
+)

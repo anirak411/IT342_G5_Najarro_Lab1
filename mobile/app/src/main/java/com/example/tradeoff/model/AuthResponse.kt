@@ -1,4 +1,6 @@
 package com.example.tradeoff.model
 
-class AuthResponse {
-}
+data class AuthResponse(
+    val success: Boolean,
+    val message: String
+)

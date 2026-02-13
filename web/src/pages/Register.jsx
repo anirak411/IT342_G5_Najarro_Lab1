@@ -1,27 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "../css/global.css";
 
 function Register() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
+    const [fullName, setFullName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
-    const handleRegister = async () => {
-        const res = await fetch('http://localhost:8080/api/auth/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password }),
-        });
-        const data = await res.text();
-        setMessage(data);
+    const handleRegister = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await axios.post("http://localhost:8080/api/auth/register", {
+                fullName,
+                email,
+                password,
+            });
+
+            alert(res.data);
+            navigate("/login");
+        } catch {
+            alert("Registration failed.");
+        }
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            <input placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-            <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-            <button onClick={handleRegister}>Register</button>
-            <p>{message}</p>
+        <div className="page">
+            <div className="card-wrapper">
+                <button className="back-button" onClick={() => navigate("/login")}>
+                    ← Back
+                </button>
+
+                <div className="auth-card">
+                    <h2>Register</h2>
+
+                    <form className="auth-form" onSubmit={handleRegister}>
+                        <input
+                            className="auth-input"
+                            type="text"
+                            placeholder="Full Name"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            required
+                        />
+
+                        <input
+                            className="auth-input"
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+
+                        <input
+                            className="auth-input"
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+
+                        <button className="auth-button" type="submit">
+                            Register
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-package com.it342.backend.service;
+package com.it342.service;
 
 import com.it342.backend.model.User;
 import com.it342.backend.repository.UserRepository;
@@ -9,28 +9,41 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public User registerUser(String username, String password) {
-        if(userRepository.existsByUsername(username)) {
-            throw new RuntimeException("Username already exists");
+    public String register(String fullName, String email, String password) {
+
+        if (userRepository.existsByEmail(email)) {
+            return "Email already exists!";
         }
+
         User user = new User();
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
-        return userRepository.save(user);
+        user.setFullName(fullName);
+        user.setEmail(email);
+        user.setPassword(encoder.encode(password));
+
+        userRepository.save(user);
+
+        return "User registered successfully!";
     }
 
-    public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-    }
+    public String login(String email, String password) {
 
-    public boolean checkPassword(String rawPassword, String encodedPassword) {
-        return passwordEncoder.matches(rawPassword, encodedPassword);
+        User user = userRepository.findByEmail(email)
+                .orElse(null);
+
+        if (user == null) {
+            return "User not found!";
+        }
+
+        if (!encoder.matches(password, user.getPassword())) {
+            return "Invalid password!";
+        }
+
+        return "Login successful!";
     }
 }

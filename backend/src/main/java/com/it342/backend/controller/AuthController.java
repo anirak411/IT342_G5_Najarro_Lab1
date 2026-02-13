@@ -1,47 +1,65 @@
 package com.it342.backend.controller;
 
+import com.it342.backend.dto.ApiResponse;
 import com.it342.backend.dto.LoginRequest;
 import com.it342.backend.dto.RegisterRequest;
 import com.it342.backend.model.User;
-import com.it342.backend.service.UserService;
+import com.it342.backend.repository.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.servlet.http.HttpSession;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "*")
 public class AuthController {
 
-    private final UserService userService;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public AuthController(UserService userService) {
-        this.userService = userService;
+    public AuthController(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @PostMapping("/register")
-    public String register(@RequestBody RegisterRequest request) {
-        userService.registerUser(request.getUsername(), request.getPassword());
-        return "User registered successfully";
+    public ApiResponse register(@RequestBody RegisterRequest request) {
+
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+            return new ApiResponse(false, "Email already exists!");
+        }
+
+        User user = new User(
+                request.getFullName(),
+                request.getEmail(),
+                encoder.encode(request.getPassword())
+        );
+
+        userRepository.save(user);
+
+        return new ApiResponse(true, "User registered successfully!");
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest request, HttpSession session) {
-        User user = userService.getUserByUsername(request.getUsername());
-        if(userService.checkPassword(request.getPassword(), user.getPassword())) {
-            session.setAttribute("user", user.getUsername());
-            return "Login successful";
-        } else {
-            return "Invalid credentials";
+    public ApiResponse login(@RequestBody LoginRequest request) {
+
+        Optional<User> userOpt = userRepository.findByEmail(request.getEmail());
+
+        if (userOpt.isEmpty()) {
+            return new ApiResponse(false, "User not found!");
         }
+
+        User user = userOpt.get();
+
+        if (!encoder.matches(request.getPassword(), user.getPassword())) {
+            return new ApiResponse(false, "Invalid password!");
+        }
+
+        return new ApiResponse(true, "Login successful!", user.getFullName());
     }
 
-    @GetMapping("/me")
-    public String me(HttpSession session) {
-        Object user = session.getAttribute("user");
-        if(user != null) {
-            return "Logged in as: " + user;
-        } else {
-            return "Not logged in";
-        }
+    @PostMapping("/logout")
+    public ApiResponse logout() {
+        return new ApiResponse(true, "Logout successful!");
     }
 }
