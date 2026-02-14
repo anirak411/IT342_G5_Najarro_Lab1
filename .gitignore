@@ -1,48 +1,21 @@
-# =========================
-# OS / System files
-# =========================
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-
-# =========================
-# IDE / Editor files
-# =========================
 .idea/
 *.iml
-
-# VS Code (optional)
 .vscode/
-
-# =========================
-# Android / Gradle build files
-# =========================
 .gradle/
 build/
 */build/
-
-# Local config files
 local.properties
-
-# =========================
-# Logs
-# =========================
 *.log
-
-# =========================
-# Node / React (if included in repo)
-# =========================
 node_modules/
 dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# =========================
-# Environment files
-# =========================
 .env
 .env.local
 .env.*.local
