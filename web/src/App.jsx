@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import LandingPage from "./pages/LandingPage.jsx";
 import Profile from "./pages/Profile.jsx";
+import Sell from "./pages/Sell.jsx";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile/>} />
+            <Route path="/sell" element={<Sell/>}/>
         </Routes>
     );
 }

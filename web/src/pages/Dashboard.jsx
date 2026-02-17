@@ -38,14 +38,11 @@ function Dashboard() {
                 <input
                     className="dashboard-search"
                     type="text"
-                    placeholder="Search items..."
+                    placeholder="Search items, deals, trades..."
                 />
 
                 <div className="dashboard-header-actions">
-                    <button
-                        className="profile-btn"
-                        onClick={() => navigate("/profile")}
-                    >
+                    <button className="profile-btn" onClick={() => navigate("/profile")}>
                         {fullName ? fullName.charAt(0) : "U"}
                     </button>
 
@@ -57,33 +54,55 @@ function Dashboard() {
 
             <div className="dashboard-body">
                 <aside className="dashboard-sidebar">
-                    <h3>Menu</h3>
+                    <h3>Marketplace</h3>
 
                     <button onClick={() => navigate("/dashboard")}>Home</button>
-                    <button onClick={() => navigate("/sell")}>Post Item</button>
-                    <button onClick={() => navigate("/marketplace")}>Marketplace</button>
+                    <button onClick={() => navigate("/sell")}>Sell an Item</button>
+                    <button onClick={() => navigate("/marketplace")}>Browse Items</button>
                     <button onClick={() => navigate("/profile")}>My Profile</button>
                 </aside>
 
                 <main className="dashboard-feed">
-                    <h2 className="welcome-text">
-                        Welcome back, <span>{fullName}</span>
-                    </h2>
+                    <div className="marketplace-header">
+                        <h2>
+                            Welcome, <span>{fullName}</span>
+                        </h2>
+                        <p>Discover the latest campus listings today.</p>
 
-                    <p className="subtitle">Recent Listings</p>
+                        <div className="category-bar">
+                            <button className="cat active">All</button>
+                            <button className="cat">Electronics</button>
+                            <button className="cat">Clothing</button>
+                            <button className="cat">Books</button>
+                            <button className="cat">Others</button>
+                        </div>
+                    </div>
 
                     {items.length === 0 ? (
-                        <p className="empty-feed">No items have been posted yet.</p>
+                        <p className="empty-feed">No items posted yet.</p>
                     ) : (
-                        <div className="items-grid">
+                        <div className="market-grid">
                             {items.map((item) => (
-                                <div key={item.id} className="post-card">
-                                    <h3>{item.title}</h3>
-                                    <p>{item.description}</p>
-                                    <p className="price">₱{item.price}</p>
-                                    <span className="seller">
-                    Posted by {item.sellerName}
-                  </span>
+                                <div key={item.id} className="market-card">
+                                    <img
+                                        src="/images/item-placeholder.png"
+                                        alt="Item"
+                                        className="item-img"
+                                    />
+
+                                    <div className="market-info">
+                                        <h3>{item.title}</h3>
+                                        <p className="market-price">₱{item.price}</p>
+                                        <p className="market-desc">{item.description}</p>
+
+                                        <span className="market-seller">
+                      Seller: {item.sellerName}
+                    </span>
+
+                                        <button className="view-btn">
+                                            View Listing
+                                        </button>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -94,17 +113,13 @@ function Dashboard() {
                     <h3>Quick Actions</h3>
 
                     <div className="quick-box">
-                        <p>Post something today and reach more students.</p>
-                        <button onClick={() => navigate("/sell")}>
-                            Create Listing
-                        </button>
+                        <p>Post your first item and reach more students.</p>
+                        <button onClick={() => navigate("/sell")}>Create Listing</button>
                     </div>
 
                     <div className="quick-box secondary">
-                        <p>Update your profile details.</p>
-                        <button onClick={() => navigate("/profile")}>
-                            Go to Profile
-                        </button>
+                        <p>Manage your profile and listings.</p>
+                        <button onClick={() => navigate("/profile")}>Go to Profile</button>
                     </div>
                 </aside>
             </div>
