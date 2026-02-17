@@ -29,24 +29,37 @@ function Login() {
     };
 
     return (
-        <div className="page">
-            <div className="card-wrapper">
+        <div className="auth-page">
+            <div className="auth-container">
+                <div className="auth-image">
+                    <img
+                        src="/src/images/roblox.png"
+                        alt="roblox"
+                        className="side-image"
+                    />
+                </div>
+
                 <div className="auth-card">
-                    <button
-                        type="button"
-                        className="back-button"
-                        onClick={() => navigate("/")}
-                    >
+                    <img
+                        src="/src/images/logo.png"
+                        alt="logo"
+                        className="auth-logo"
+                    />
+
+                    <button className="back-button" onClick={() => navigate("/")}>
                         ← Back
                     </button>
 
-                    <h2>Welcome Back!</h2>
+                    <h2 className="auth-title">Welcome Back</h2>
+                    <p className="auth-subtitle">
+                        Sign in to continue trading smarter with TradeOff.
+                    </p>
 
                     <form className="auth-form" onSubmit={handleLogin}>
                         <input
                             className="auth-input"
                             type="email"
-                            placeholder="Email"
+                            placeholder="Email Address"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -67,10 +80,10 @@ function Login() {
 
                         <button
                             type="button"
-                            className="auth-button secondary"
+                            className="auth-button outline"
                             onClick={() => navigate("/register")}
                         >
-                            Register
+                            Create Account
                         </button>
                     </form>
                 </div>
