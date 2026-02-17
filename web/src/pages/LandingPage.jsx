@@ -37,11 +37,6 @@ function LandingPage() {
                     and discover affordable pre-owned items. It’s a simple way
                     to connect with others and give items a new purpose.
                 </p>
-
-                <span className="landing-note">
-                    Trading and selling made easier for students.
-                </span>
-
                 <section className="landing-features">
                     <h2>What You Can Do</h2>
 
