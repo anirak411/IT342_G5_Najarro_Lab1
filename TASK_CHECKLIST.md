@@ -1,4 +1,4 @@
-TradeOff : IT342 Lab Project Checklist
+#  TradeOff : IT342 Project Checklist
 
 This TODO list tracks the development of the TradeOff multi-platform application
 (Spring Boot Backend + React Web + Android Mobile).
