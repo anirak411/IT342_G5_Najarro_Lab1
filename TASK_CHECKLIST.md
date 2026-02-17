@@ -1,4 +1,4 @@
-# ✅ TradeOff App – Agile Development Checklist (IntelliJ Format)
+TradeOff : IT342 Lab Project Checklist
 
 This TODO list tracks the development of the TradeOff multi-platform application
 (Spring Boot Backend + React Web + Android Mobile).
