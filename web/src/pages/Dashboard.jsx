@@ -6,7 +6,7 @@ import "../css/dashboard.css";
 
 function Dashboard() {
     const navigate = useNavigate();
-    const fullName = localStorage.getItem("fullName");
+    const fullName = localStorage.getItem("user");
 
     const [items, setItems] = useState([]);
 
@@ -31,7 +31,9 @@ function Dashboard() {
     return (
         <div className="dashboard-page">
             <header className="dashboard-header">
-                <h2 className="dashboard-logo">TradeOff</h2>
+                <h2 className="dashboard-logo" onClick={() => navigate("/dashboard")}>
+                    TradeOff
+                </h2>
 
                 <input
                     className="dashboard-search"
@@ -39,40 +41,52 @@ function Dashboard() {
                     placeholder="Search items..."
                 />
 
-                <button className="dashboard-logout" onClick={handleLogout}>
-                    Logout
-                </button>
+                <div className="dashboard-header-actions">
+                    <button
+                        className="profile-btn"
+                        onClick={() => navigate("/profile")}
+                    >
+                        {fullName ? fullName.charAt(0) : "U"}
+                    </button>
+
+                    <button className="dashboard-logout" onClick={handleLogout}>
+                        Logout
+                    </button>
+                </div>
             </header>
 
             <div className="dashboard-body">
                 <aside className="dashboard-sidebar">
                     <h3>Menu</h3>
+
                     <button onClick={() => navigate("/dashboard")}>Home</button>
                     <button onClick={() => navigate("/sell")}>Post Item</button>
-                    <button onClick={() => navigate("/marketplace")}>
-                        Marketplace
-                    </button>
+                    <button onClick={() => navigate("/marketplace")}>Marketplace</button>
+                    <button onClick={() => navigate("/profile")}>My Profile</button>
                 </aside>
 
                 <main className="dashboard-feed">
-                    <h2>Welcome back, {fullName}</h2>
-                    <p>Recent listings: </p>
+                    <h2 className="welcome-text">
+                        Welcome back, <span>{fullName}</span>
+                    </h2>
+
+                    <p className="subtitle">Recent Listings</p>
 
                     {items.length === 0 ? (
-                        <p className="empty-feed">
-                            No items have been posted yet.
-                        </p>
+                        <p className="empty-feed">No items have been posted yet.</p>
                     ) : (
-                        items.map((item) => (
-                            <div key={item.id} className="post-card">
-                                <h3>{item.title}</h3>
-                                <p>{item.description}</p>
-                                <p className="price">₱{item.price}</p>
-                                <span className="seller">
-                                    Posted by {item.sellerName}
-                                </span>
-                            </div>
-                        ))
+                        <div className="items-grid">
+                            {items.map((item) => (
+                                <div key={item.id} className="post-card">
+                                    <h3>{item.title}</h3>
+                                    <p>{item.description}</p>
+                                    <p className="price">₱{item.price}</p>
+                                    <span className="seller">
+                    Posted by {item.sellerName}
+                  </span>
+                                </div>
+                            ))}
+                        </div>
                     )}
                 </main>
 
@@ -83,6 +97,13 @@ function Dashboard() {
                         <p>Post something today and reach more students.</p>
                         <button onClick={() => navigate("/sell")}>
                             Create Listing
+                        </button>
+                    </div>
+
+                    <div className="quick-box secondary">
+                        <p>Update your profile details.</p>
+                        <button onClick={() => navigate("/profile")}>
+                            Go to Profile
                         </button>
                     </div>
                 </aside>

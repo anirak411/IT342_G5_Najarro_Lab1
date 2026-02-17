@@ -130,3 +130,36 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+.dashboard-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: #22c55e;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.profile-btn:hover {
+    background: #16a34a;
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.welcome-text span {
+    color: #22c55e;
+}
+
