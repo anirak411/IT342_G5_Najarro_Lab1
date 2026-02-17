@@ -4,28 +4,39 @@
     box-sizing: border-box;
 }
 
-.landing-page {
-    position: fixed;
-    inset: 0;
-    background: #f8fafc;
-    font-family: "Roboto Light", sans-serif;
-    overflow: hidden;
+.marketplace-page {
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    background: linear-gradient(135deg, #eff6ff, #f8fafc);
 }
 
-.landing-header {
+.marketplace-header {
     width: 100%;
-    padding: 20px 70px;
+    padding: 18px 60px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid #e5e7eb;
-    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .brand-name {
-    font-size: 20px;
-    font-weight: 700;
-    color: #111;
+    font-size: 22px;
+    font-weight: 900;
+    color: #2563eb;
+}
+
+.search-box input {
+    width: 360px;
+    padding: 11px 15px;
+    border-radius: 14px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 14px;
 }
 
 .header-links {
@@ -34,85 +45,157 @@
 }
 
 .header-btn {
-    padding: 9px 16px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    background: white;
-    font-size: 14px;
-    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 14px;
+    border: none;
+    font-weight: 700;
     cursor: pointer;
+    background: #f1f5f9;
+    transition: 0.2s;
+}
+
+.header-btn:hover {
+    transform: translateY(-2px);
 }
 
 .header-btn.primary {
-    background: #22c55e;
+    background: #2563eb;
     color: white;
-    border: none;
 }
 
-.landing-main {
-    max-width: 900px;
+.header-btn.primary:hover {
+    background: #1d4ed8;
+}
+
+.marketplace-main {
+    max-width: 1200px;
     margin: auto;
-    text-align: center;
-    padding-top: 110px;
+    padding: 50px 20px;
 }
 
-.landing-title {
-    font-size: 50px;
-    font-weight: 800;
-    color: #111;
-    margin-bottom: 18px;
-    line-height: 1.15;
-}
-
-.landing-description {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #444;
-    max-width: 650px;
-    margin: 0 auto 14px;
-}
-
-.landing-note {
-    font-size: 13px;
-    color: #666;
-    display: block;
-    margin-bottom: 55px;
-}
-
-.landing-features {
-    margin-top: 20px;
-}
-
-.landing-features h2 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 28px;
-    color: #111;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-}
-
-.feature-card {
-    background: white;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+.marketplace-banner {
     text-align: left;
+    margin-bottom: 35px;
 }
 
-.feature-card h3 {
+.marketplace-banner h1 {
+    font-size: 34px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.marketplace-banner p {
     font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #111;
+    color: #475569;
 }
 
-.feature-card p {
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.item-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    transition: 0.25s ease;
+}
+
+.item-card:hover {
+    transform: translateY(-6px);
+}
+
+.item-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.item-info {
+    padding: 14px;
+}
+
+.item-info h3 {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.preview-text {
     font-size: 13px;
-    color: #555;
-    line-height: 1.4;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+.empty-msg {
+    font-size: 15px;
+    color: #64748b;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    width: 380px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(18px);
+    padding: 28px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.modal-box h2 {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.modal-box p {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.modal-btn {
+    padding: 10px 18px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.modal-btn.primary {
+    background: #2563eb;
+    color: white;
+}
+
+.modal-btn.primary:hover {
+    background: #1d4ed8;
+}
+
+.modal-btn.secondary {
+    background: #e2e8f0;
 }
