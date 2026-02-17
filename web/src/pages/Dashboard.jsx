@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import ChatWidget from "../pages/ChatWidget";
 import "../css/dashboard.css";
 
 function Dashboard() {
@@ -11,120 +10,96 @@ function Dashboard() {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        const fetchItems = async () => {
-            try {
-                const res = await axios.get("http://localhost:8080/api/items");
-                setItems(res.data);
-            } catch (err) {
-                console.log("Failed to load items");
-            }
-        };
-
         fetchItems();
     }, []);
 
-    const handleLogout = () => {
-        localStorage.clear();
-        navigate("/login");
+    const fetchItems = async () => {
+        try {
+            const res = await axios.get("http://localhost:8080/api/items");
+            setItems(res.data);
+        } catch (err) {
+            console.log("Failed to load items");
+        }
     };
 
     return (
-        <div className="dashboard-page">
-            <header className="dashboard-header">
-                <h2 className="dashboard-logo" onClick={() => navigate("/dashboard")}>
+        <div className="marketplace-page">
+            <header className="marketplace-navbar">
+                <h2 className="logo" onClick={() => navigate("/dashboard")}>
                     TradeOff
                 </h2>
 
-                <input
-                    className="dashboard-search"
-                    type="text"
-                    placeholder="Search items, deals, trades..."
-                />
+                <nav className="nav-links">
+                    <span>Electronics</span>
+                    <span>Clothing</span>
+                    <span>Books</span>
+                    <span>Others</span>
+                </nav>
 
-                <div className="dashboard-header-actions">
-                    <button className="profile-btn" onClick={() => navigate("/profile")}>
-                        {fullName ? fullName.charAt(0) : "U"}
+                <div className="nav-actions">
+                    <button className="sell-btn" onClick={() => navigate("/sell")}>
+                        Sell Item
                     </button>
 
-                    <button className="dashboard-logout" onClick={handleLogout}>
-                        Logout
+                    <button
+                        className="profile-circle"
+                        onClick={() => navigate("/profile")}
+                    >
+                        {fullName ? fullName.charAt(0) : "U"}
                     </button>
                 </div>
             </header>
 
-            <div className="dashboard-body">
-                <aside className="dashboard-sidebar">
-                    <h3>Marketplace</h3>
+            <section className="hero-banner">
+                <div className="hero-overlay">
+                    <h1>
+                        Trade smarter. <br /> Find exciting deals.
+                    </h1>
 
-                    <button onClick={() => navigate("/dashboard")}>Home</button>
-                    <button onClick={() => navigate("/sell")}>Sell an Item</button>
-                    <button onClick={() => navigate("/marketplace")}>Browse Items</button>
-                    <button onClick={() => navigate("/profile")}>My Profile</button>
-                </aside>
-
-                <main className="dashboard-feed">
-                    <div className="marketplace-header">
-                        <h2>
-                            Welcome, <span>{fullName}</span>
-                        </h2>
-                        <p>Discover the latest campus listings today.</p>
-
-                        <div className="category-bar">
-                            <button className="cat active">All</button>
-                            <button className="cat">Electronics</button>
-                            <button className="cat">Clothing</button>
-                            <button className="cat">Books</button>
-                            <button className="cat">Others</button>
-                        </div>
+                    <div className="hero-search">
+                        <input type="text" placeholder="What are you looking for?" />
+                        <button>➜</button>
                     </div>
 
-                    {items.length === 0 ? (
-                        <p className="empty-feed">No items posted yet.</p>
-                    ) : (
-                        <div className="market-grid">
-                            {items.map((item) => (
-                                <div key={item.id} className="market-card">
-                                    <img
-                                        src="/images/item-placeholder.png"
-                                        alt="Item"
-                                        className="item-img"
-                                    />
+                    <div className="hero-tags">
+                        <span>Electronics</span>
+                        <span>Clothing</span>
+                        <span>Books</span>
+                        <span>Others</span>
+                    </div>
+                </div>
+            </section>
 
-                                    <div className="market-info">
-                                        <h3>{item.title}</h3>
-                                        <p className="market-price">₱{item.price}</p>
-                                        <p className="market-desc">{item.description}</p>
+            <section className="recent-section">
+                <div className="recent-header">
+                    <h2>Listed Recently</h2>
+                </div>
 
-                                        <span className="market-seller">
-                      Seller: {item.sellerName}
-                    </span>
+                {items.length === 0 ? (
+                    <p className="empty-text">No listings yet.</p>
+                ) : (
+                    <div className="listing-row">
+                        {items.map((item) => (
+                            <div
+                                key={item.id}
+                                className="listing-card"
+                                onClick={() => navigate(`/item/${item.id}`)}
+                                style={{ cursor: "pointer" }}
+                            >
+                                <img src={item.imageUrl} alt="item" />
 
-                                        <button className="view-btn">
-                                            View Listing
-                                        </button>
-                                    </div>
+                                <div className="listing-info">
+                                    <h3>{item.title}</h3>
+                                    <p className="price">
+                                        ₱{Number(item.price).toFixed(2)}
+                                    </p>
+                                    <p className="seller">{item.sellerName}</p>
                                 </div>
-                            ))}
-                        </div>
-                    )}
-                </main>
-
-                <aside className="dashboard-right">
-                    <h3>Quick Actions</h3>
-
-                    <div className="quick-box">
-                        <p>Post your first item and reach more students.</p>
-                        <button onClick={() => navigate("/sell")}>Create Listing</button>
+                            </div>
+                        ))}
                     </div>
-
-                    <div className="quick-box secondary">
-                        <p>Manage your profile and listings.</p>
-                        <button onClick={() => navigate("/profile")}>Go to Profile</button>
-                    </div>
-                </aside>
-            </div>
-
-            <ChatWidget />
+                )}
+            </section>
         </div>
     );
 }

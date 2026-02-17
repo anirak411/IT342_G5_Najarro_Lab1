@@ -1,231 +1,221 @@
-.dashboard-page {
-    height: 100vh;
+.marketplace-page {
+    font-family: "Inter", sans-serif;
     background: #f8fafc;
-    font-family: "Roboto Light", sans-serif;
-    display: flex;
-    flex-direction: column;
+    min-height: 100vh;
 }
 
-.dashboard-header {
-    height: 70px;
+.marketplace-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     background: white;
+    padding: 18px 50px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 0 35px;
-    border-bottom: 1px solid #e5e7eb;
+    align-items: center;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.06);
 }
 
-.dashboard-logo {
+.logo {
     font-size: 22px;
-    font-weight: 900;
-    color: #22c55e;
+    font-weight: 800;
+    color: #2563eb;
     cursor: pointer;
 }
 
-.dashboard-search {
-    width: 380px;
-    padding: 10px 16px;
-    border-radius: 25px;
-    border: 1px solid #ddd;
-    outline: none;
+.nav-links span {
+    margin: 0 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
 }
 
-.dashboard-header-actions {
+.nav-links span:hover {
+    color: #2563eb;
+}
+
+.nav-actions {
     display: flex;
-    align-items: center;
     gap: 12px;
 }
 
-.profile-btn {
+.sell-btn {
+    background: #2563eb;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.sell-btn:hover {
+    background: #1d4ed8;
+}
+
+.profile-circle {
     width: 42px;
     height: 42px;
     border-radius: 50%;
     border: none;
-    background: #22c55e;
+    background: #111827;
     color: white;
-    font-weight: 800;
+    font-weight: 700;
     cursor: pointer;
 }
 
-.profile-btn:hover {
-    background: #16a34a;
-}
-
-.dashboard-logout {
-    padding: 10px 18px;
-    border: none;
-    border-radius: 12px;
-    background: #f1f5f9;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.dashboard-body {
-    flex: 1;
-    display: grid;
-    grid-template-columns: 240px 1fr 280px;
-}
-
-.dashboard-sidebar {
-    background: white;
-    padding: 25px;
-    border-right: 1px solid #e5e7eb;
-}
-
-.dashboard-sidebar h3 {
-    font-size: 16px;
-    font-weight: 800;
-    margin-bottom: 18px;
-}
-
-.dashboard-sidebar button {
-    display: block;
-    width: 100%;
-    margin-bottom: 12px;
-    padding: 11px;
-    border: none;
-    border-radius: 12px;
-    background: #f8fafc;
-    cursor: pointer;
-    text-align: left;
-    font-weight: 600;
-}
-
-.dashboard-sidebar button:hover {
-    background: #dcfce7;
-}
-
-.dashboard-feed {
-    padding: 30px;
-    overflow-y: auto;
-}
-
-.marketplace-header h2 {
-    font-size: 26px;
-    font-weight: 900;
-}
-
-.marketplace-header span {
-    color: #22c55e;
-}
-
-.marketplace-header p {
-    margin-top: 6px;
-    margin-bottom: 20px;
-    color: #555;
-}
-
-.category-bar {
+.hero-banner {
+    height: 320px;
+    background: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f")
+    center/cover no-repeat;
     display: flex;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.hero-overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    max-width: 650px;
+}
+
+.hero-overlay h1 {
+    font-size: 42px;
+    font-weight: 800;
     margin-bottom: 25px;
 }
 
-.cat {
-    padding: 8px 14px;
-    border-radius: 20px;
-    border: 1px solid #ddd;
-    background: white;
-    cursor: pointer;
-    font-size: 13px;
+.hero-search {
+    display: flex;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    padding: 10px;
+    max-width: 520px;
+    margin: auto;
 }
 
-.cat.active {
-    background: #22c55e;
-    color: white;
+.hero-search input {
+    flex: 1;
     border: none;
+    outline: none;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 15px;
 }
 
-.market-grid {
+.hero-search button {
+    border: none;
+    padding: 0 18px;
+    border-radius: 14px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.hero-search button:hover {
+    background: #1d4ed8;
+}
+
+.hero-tags {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.hero-tags span {
+    padding: 7px 14px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.recent-section {
+    padding: 50px;
+}
+
+.recent-header h2 {
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.empty-text {
+    margin-top: 20px;
+    color: #6b7280;
+}
+
+.listing-row {
+    margin-top: 25px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 }
 
-.market-card {
+.listing-card {
     background: white;
-    border-radius: 18px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
-    transition: 0.2s;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: 0.25s;
 }
 
-.market-card:hover {
-    transform: translateY(-4px);
+.listing-card:hover {
+    transform: translateY(-5px);
 }
 
-.item-img {
+.listing-card img {
     width: 100%;
-    height: 160px;
+    height: 60%;
     object-fit: cover;
 }
 
-.market-info {
-    padding: 15px;
+.listing-info {
+    padding: 12px;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.market-info h3 {
+.listing-info h3 {
     font-size: 15px;
-    font-weight: 800;
+    font-weight: 700;
     margin-bottom: 6px;
 }
 
-.market-price {
-    font-size: 15px;
-    font-weight: 900;
-    color: #22c55e;
-    margin-bottom: 6px;
+.price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2563eb;
 }
 
-.market-desc {
+.seller {
     font-size: 13px;
-    color: #555;
-    margin-bottom: 10px;
+    color: #6b7280;
 }
 
-.market-seller {
-    font-size: 12px;
-    color: #777;
-}
-
-.view-btn {
-    margin-top: 12px;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 12px;
-    background: #22c55e;
-    color: white;
-    font-weight: 700;
+.listing-card {
     cursor: pointer;
+    position: relative;
+    z-index: 10;
 }
 
-.view-btn:hover {
-    background: #16a34a;
-}
-
-.dashboard-right {
-    background: white;
-    padding: 25px;
-    border-left: 1px solid #e5e7eb;
-}
-
-.quick-box {
-    background: #f8fafc;
-    padding: 16px;
-    border-radius: 16px;
-    margin-bottom: 18px;
-}
-
-.quick-box button {
-    margin-top: 10px;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 12px;
-    background: #22c55e;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
+.listing-card img {
+    pointer-events: none;
 }

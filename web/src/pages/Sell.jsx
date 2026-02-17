@@ -17,17 +17,14 @@ function SellItem() {
 
         try {
             const formData = new FormData();
+            formData.append("sellerName", localStorage.getItem("user"));
             formData.append("title", title);
             formData.append("description", description);
             formData.append("price", price);
             formData.append("category", category);
             formData.append("image", image);
 
-            await axios.post("http://localhost:8080/api/items/create", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
+            await axios.post("http://localhost:8080/api/items/upload", formData);
 
             alert("Listing posted successfully!");
             navigate("/dashboard");
@@ -37,65 +34,70 @@ function SellItem() {
     };
 
     return (
-        <div className="sell-page">
-            <div className="sell-card">
-                <button className="back-btn" onClick={() => navigate("/dashboard")}>
-                    ← Back
-                </button>
+        <div className="sell-container">
+            <div className="sell-wrapper">
+                <div className="sell-header">
+                    <button className="back-btn" onClick={() => navigate("/dashboard")}>
+                        ← Back to Dashboard
+                    </button>
 
-                <h2 className="sell-title">Post a New Listing</h2>
-                <p className="sell-subtitle">
-                    Upload your item and start trading with students.
-                </p>
+                    <h2>Post a New Listing</h2>
+                    <p>Upload your item and start trading with students.</p>
+                </div>
 
-                <form className="sell-form" onSubmit={handleSubmit}>
-                    <label className="upload-box">
-                        {image ? image.name : "Click to upload an image"}
+                <div className="sell-card">
+                    <form onSubmit={handleSubmit} className="sell-form">
+                        <label className="upload-box">
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => setImage(e.target.files[0])}
+                                required
+                            />
+                            <span>
+                {image ? `📸 ${image.name}` : "Click to upload an image"}
+              </span>
+                        </label>
+
                         <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => setImage(e.target.files[0])}
+                            type="text"
+                            placeholder="Item Title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                             required
                         />
-                    </label>
 
-                    <input
-                        type="text"
-                        placeholder="Item Title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                    />
+                        <textarea
+                            placeholder="Item Description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                        />
 
-                    <textarea
-                        placeholder="Item Description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                    />
+                        <input
+                            type="number"
+                            step="0.01"
+                            placeholder="Price (₱)"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                            required
+                        />
 
-                    <input
-                        type="number"
-                        placeholder="Price (₱)"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                        required
-                    />
+                        <select
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                        >
+                            <option>Electronics</option>
+                            <option>Clothing</option>
+                            <option>Books</option>
+                            <option>Others</option>
+                        </select>
 
-                    <select
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                    >
-                        <option>Electronics</option>
-                        <option>Clothing</option>
-                        <option>Books</option>
-                        <option>Others</option>
-                    </select>
-
-                    <button type="submit" className="post-btn">
-                        Post Listing
-                    </button>
-                </form>
+                        <button type="submit" className="post-btn">
+                            Post Listing
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );

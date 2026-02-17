@@ -1,59 +1,69 @@
-.sell-page {
+.sell-container {
     min-height: 100vh;
-    background: #f8fafc;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Roboto Light", sans-serif;
+    background: #f8fafc;
     padding: 40px 20px;
 }
 
+.sell-wrapper {
+    width: 100%;
+    max-width: 520px;
+}
+
+.sell-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
 .sell-card {
-    width: 520px;
     background: white;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .back-btn {
+    display: block;
+    margin-bottom: 15px;
     border: none;
     background: none;
-    font-weight: 700;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-.back-btn:hover {
-    color: #22c55e;
-}
-
-.sell-title {
-    font-size: 26px;
-    font-weight: 900;
-    margin-bottom: 6px;
-}
-
-.sell-subtitle {
     font-size: 14px;
-    color: #555;
-    margin-bottom: 25px;
+    font-weight: 600;
+    color: #2563eb;
+    cursor: pointer;
 }
 
 .sell-form {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 15px;
+}
+
+.upload-box {
+    border: 2px dashed #cbd5e1;
+    padding: 18px;
+    border-radius: 14px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 500;
+    color: #475569;
+}
+
+.upload-box input {
+    display: none;
 }
 
 .sell-form input,
 .sell-form textarea,
 .sell-form select {
+    width: 100%;
     padding: 12px;
     border-radius: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid #e2e8f0;
     font-size: 14px;
-    font-family: inherit;
+    outline: none;
 }
 
 .sell-form textarea {
@@ -61,37 +71,16 @@
     height: 90px;
 }
 
-.sell-form input:focus,
-.sell-form textarea:focus,
-.sell-form select:focus {
-    outline: none;
-    border-color: #22c55e;
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
-}
-
-.upload-box {
-    border: 2px dashed #bbb;
-    padding: 18px;
-    border-radius: 14px;
-    text-align: center;
-    cursor: pointer;
-    font-size: 14px;
-    color: #444;
-}
-
-.upload-box input {
-    display: none;
-}
-
 .post-btn {
-    padding: 13px;
+    margin-top: 10px;
+    padding: 14px;
     border: none;
     border-radius: 14px;
     background: #22c55e;
     color: white;
-    font-weight: 800;
-    cursor: pointer;
     font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
 }
 
 .post-btn:hover {
