@@ -1,0 +1,99 @@
+.sell-page {
+    min-height: 100vh;
+    background: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto Light", sans-serif;
+    padding: 40px 20px;
+}
+
+.sell-card {
+    width: 520px;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.back-btn {
+    border: none;
+    background: none;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.back-btn:hover {
+    color: #22c55e;
+}
+
+.sell-title {
+    font-size: 26px;
+    font-weight: 900;
+    margin-bottom: 6px;
+}
+
+.sell-subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.sell-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.sell-form input,
+.sell-form textarea,
+.sell-form select {
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.sell-form textarea {
+    resize: none;
+    height: 90px;
+}
+
+.sell-form input:focus,
+.sell-form textarea:focus,
+.sell-form select:focus {
+    outline: none;
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+}
+
+.upload-box {
+    border: 2px dashed #bbb;
+    padding: 18px;
+    border-radius: 14px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #444;
+}
+
+.upload-box input {
+    display: none;
+}
+
+.post-btn {
+    padding: 13px;
+    border: none;
+    border-radius: 14px;
+    background: #22c55e;
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.post-btn:hover {
+    background: #16a34a;
+}
