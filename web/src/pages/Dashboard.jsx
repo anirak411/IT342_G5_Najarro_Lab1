@@ -15,8 +15,20 @@ function Dashboard() {
     const [category, setCategory] = useState("All");
     const [sortOption, setSortOption] = useState("Newest");
 
+    const [profilePic, setProfilePic] = useState(
+        localStorage.getItem("profilePic") || ""
+    );
+
     useEffect(() => {
         fetchItems();
+
+        const updateProfilePic = () => {
+            setProfilePic(localStorage.getItem("profilePic") || "");
+        };
+
+        window.addEventListener("storage", updateProfilePic);
+
+        return () => window.removeEventListener("storage", updateProfilePic);
     }, []);
 
     const fetchItems = async () => {
@@ -66,7 +78,17 @@ function Dashboard() {
                         className="profile-circle"
                         onClick={() => navigate("/profile")}
                     >
-                        {fullName ? fullName.charAt(0) : "U"}
+                        {profilePic ? (
+                            <img
+                                src={profilePic}
+                                alt="Profile"
+                                className="profile-pic"
+                            />
+                        ) : (
+                            fullName
+                                ? fullName.charAt(0).toUpperCase()
+                                : "U"
+                        )}
                     </button>
                 </div>
             </header>
@@ -134,7 +156,7 @@ function Dashboard() {
                             >
                                 <img
                                     src={item.imageUrl}
-                                    alt={item.itemName}
+                                    alt={item.itemName || item.title}
                                     onError={(e) =>
                                         (e.target.src =
                                             "/images/landing-placeholder.png")

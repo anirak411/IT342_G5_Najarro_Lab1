@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -8,20 +9,26 @@ import Profile from "./pages/Profile.jsx";
 import Sell from "./pages/Sell.jsx";
 import ItemDetails from "./pages/ItemDetails.jsx";
 import Settings from "./pages/Settings.jsx";
+import SellerProfile from "./pages/SellerProfile.jsx";
 
 function App() {
     return (
         <Routes>
             <Route path="/" element={<Navigate to="/landing" />} />
-            <Route path="/landing" element={<LandingPage/>} />
+
+            <Route path="/landing" element={<LandingPage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/profile" element={<Profile/>} />
-            <Route path="/sell" element={<Sell/>}/>
-            <Route path="/item/:id" element={<ItemDetails />} />
-            <Route path="/settings" element={<Settings />} />
 
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/sell" element={<Sell />} />
+
+            <Route path="/item/:id" element={<ItemDetails />} />
+
+            <Route path="/seller/:sellerName" element={<SellerProfile />} />
+
+            <Route path="/settings" element={<Settings />} />
         </Routes>
     );
 }

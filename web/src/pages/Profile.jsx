@@ -6,75 +6,147 @@ import "../css/profile.css";
 function Profile() {
     const navigate = useNavigate();
 
-    const [fullName, setFullName] = useState(localStorage.getItem("user") || "");
-    const [email] = useState(localStorage.getItem("email") || "");
+    const email = localStorage.getItem("email") || "";
+
+    const [fullName, setFullName] = useState(
+        localStorage.getItem("user") || "User"
+    );
+
+    const [profilePic, setProfilePic] = useState(
+        localStorage.getItem("profilePic") || ""
+    );
+
+    const [coverPic, setCoverPic] = useState(
+        localStorage.getItem("coverPic") || ""
+    );
+
     const [listings, setListings] = useState([]);
 
     useEffect(() => {
         const fetchListings = async () => {
             try {
-                const res = await axios.get(
-                    "http://localhost:8080/api/items/my-listings"
+                const res = await axios.get("http://localhost:8080/api/items");
+
+                const myItems = res.data.filter(
+                    (item) => item.sellerEmail === email
                 );
-                setListings(res.data);
-            } catch (err) {
+
+                setListings(myItems);
+            } catch {
                 console.log("Failed to load listings");
             }
         };
 
         fetchListings();
-    }, []);
+    }, [email]);
+
+    const uploadImage = (e, type) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            if (type === "profile") {
+                localStorage.setItem("profilePic", reader.result);
+                setProfilePic(reader.result);
+            }
+
+            if (type === "cover") {
+                localStorage.setItem("coverPic", reader.result);
+                setCoverPic(reader.result);
+            }
+        };
+
+        reader.readAsDataURL(file);
+    };
 
     return (
         <div className="profile-page">
             <button className="back-btn" onClick={() => navigate("/dashboard")}>
-                ← Back
+                ←
             </button>
 
-            <div className="profile-cover">
-                <img
-                    src="/images/cover-placeholder.png"
-                    alt="Cover"
-                    className="cover-img"
-                />
-
-                <div className="profile-avatar-box">
-                    <img
-                        src="/images/profile-placeholder.png"
-                        alt="Profile"
-                        className="profile-avatar"
+            <div
+                className="profile-cover"
+                style={{
+                    backgroundImage: coverPic
+                        ? `url(${coverPic})`
+                        : `url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f")`,
+                }}
+            >
+                <label className="cover-upload">
+                    ✎
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => uploadImage(e, "cover")}
                     />
+                </label>
+            </div>
+
+            <div className="profile-card">
+                <div className="profile-avatar-box">
+                    {profilePic ? (
+                        <img src={profilePic} alt="Profile" className="profile-avatar-img" />
+                    ) : (
+                        <div className="profile-avatar">{fullName.charAt(0)}</div>
+                    )}
+
+                    <label className="avatar-upload">
+                        ✎
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => uploadImage(e, "profile")}
+                        />
+                    </label>
+                </div>
+
+                <div className="profile-details">
+                    <input
+                        className="name-edit"
+                        value={fullName}
+                        onChange={(e) => {
+                            setFullName(e.target.value);
+                            localStorage.setItem("user", e.target.value);
+                        }}
+                    />
+
+                    <p>{email}</p>
                 </div>
             </div>
 
-            <div className="profile-info">
-                <h2>{fullName}</h2>
-                <p>{email}</p>
-
-                <button className="edit-btn">Edit Profile</button>
-            </div>
-
-            <div className="profile-tabs">
-                <button className="tab active">Listings</button>
-                <button className="tab">About</button>
-                <button className="tab">Settings</button>
-            </div>
-
-            <div className="profile-content">
-                <h3>Your Listings</h3>
+            <section className="profile-content">
+                <div className="profile-section-header">
+                    <h3>Your Listings</h3>
+                    <p>{listings.length} items</p>
+                </div>
 
                 {listings.length === 0 ? (
-                    <p className="empty-text">You haven’t posted anything yet.</p>
+                    <p className="empty-text">No listings yet.</p>
                 ) : (
-                    listings.map((item) => (
-                        <div key={item.id} className="listing-post">
-                            <h4>{item.title}</h4>
-                            <p>{item.description}</p>
-                            <span className="listing-price">₱{item.price}</span>
-                        </div>
-                    ))
+                    <div className="profile-listings">
+                        {listings.map((item) => (
+                            <div
+                                key={item.id}
+                                className="listing-card"
+                                onClick={() => navigate(`/item/${item.id}`)}
+                            >
+                                <img src={item.imageUrl} alt={item.title} />
+
+                                <div className="listing-info">
+                                    <h4>{item.title}</h4>
+                                    <p className="listing-price">
+                                        ₱{Number(item.price).toFixed(2)}
+                                    </p>
+                                    <p className="listing-category">{item.category}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 )}
-            </div>
+            </section>
         </div>
     );
 }

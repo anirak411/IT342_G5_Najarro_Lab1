@@ -14,22 +14,15 @@ public class Item {
     private String description;
     private double price;
 
-    private String sellerName;
-
     private String category;
+    private String location;
+
+    private String sellerName;
+    private String sellerEmail;
+
     private String imageUrl;
 
     public Item() {}
-
-    public Item(String title, String description, double price, String sellerName,
-                String category, String imageUrl) {
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.sellerName = sellerName;
-        this.category = category;
-        this.imageUrl = imageUrl;
-    }
 
     public Long getId() {
         return id;
@@ -59,6 +52,22 @@ public class Item {
         this.price = price;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public String getSellerName() {
         return sellerName;
     }
@@ -67,12 +76,12 @@ public class Item {
         this.sellerName = sellerName;
     }
 
-    public String getCategory() {
-        return category;
+    public String getSellerEmail() {
+        return sellerEmail;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setSellerEmail(String sellerEmail) {
+        this.sellerEmail = sellerEmail;
     }
 
     public String getImageUrl() {

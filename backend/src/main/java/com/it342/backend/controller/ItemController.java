@@ -40,7 +40,9 @@ public class ItemController {
             @RequestParam String description,
             @RequestParam double price,
             @RequestParam String category,
+            @RequestParam String location,
             @RequestParam String sellerName,
+            @RequestParam String sellerEmail,
             @RequestParam("image") MultipartFile image
     ) throws IOException {
 
@@ -56,7 +58,11 @@ public class ItemController {
         item.setDescription(description);
         item.setPrice(price);
         item.setCategory(category);
+        item.setLocation(location);
+
         item.setSellerName(sellerName);
+        item.setSellerEmail(sellerEmail);
+
         item.setImageUrl(imageUrl);
 
         return itemRepository.save(item);

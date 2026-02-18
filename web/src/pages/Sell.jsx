@@ -18,7 +18,10 @@ function SellItem() {
 
         try {
             const formData = new FormData();
+
             formData.append("sellerName", localStorage.getItem("user"));
+            formData.append("sellerEmail", localStorage.getItem("email"));
+
             formData.append("title", title);
             formData.append("description", description);
             formData.append("price", price);
@@ -40,10 +43,10 @@ function SellItem() {
             <div className="sell-wrapper">
                 <div className="sell-header">
                     <button className="back-btn" onClick={() => navigate("/dashboard")}>
-                        ← Back to Dashboard
+                        ← Back
                     </button>
 
-                    <h2>Post a New Listing</h2>
+                    <h2>Post Listing</h2>
                     <p>Upload your item and start trading.</p>
                 </div>
 
@@ -56,9 +59,7 @@ function SellItem() {
                                 onChange={(e) => setImage(e.target.files[0])}
                                 required
                             />
-                            <span>
-                                {image ? ` ${image.name}` : "Click to upload an image"}
-                            </span>
+                            <span>{image ? image.name : "Click to upload an image"}</span>
                         </label>
 
                         <div className="form-grid">
