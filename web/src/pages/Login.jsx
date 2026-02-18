@@ -29,30 +29,18 @@ function Login() {
     };
 
     return (
-        <div className="auth-page">
-            <div className="auth-container">
-                <div className="auth-image">
-                    <img
-                        src="/src/images/roblox.png"
-                        alt="roblox"
-                        className="side-image"
-                    />
-                </div>
-
-                <div className="auth-card">
+        <div className="auth-page glass-bg">
+            <div className="auth-glass-card">
+                <div className="auth-left">
                     <img
                         src="/src/images/logo.png"
-                        alt="logo"
+                        alt="TradeOff Logo"
                         className="auth-logo"
                     />
 
-                    <button className="back-button" onClick={() => navigate("/")}>
-                        ← Back
-                    </button>
-
-                    <h2 className="auth-title">Welcome Back</h2>
-                    <p className="auth-subtitle">
-                        Sign in to continue trading smarter with TradeOff.
+                    <h2>Welcome Back!</h2>
+                    <p>
+                        Sign in to explore listings, trade items, and connect with students.
                     </p>
 
                     <form className="auth-form" onSubmit={handleLogin}>
@@ -86,6 +74,18 @@ function Login() {
                             Create Account
                         </button>
                     </form>
+
+                    <button className="back-link" onClick={() => navigate("/")}>
+                        ← Back to Marketplace
+                    </button>
+                </div>
+
+                <div className="auth-right">
+                    <img
+                        src="/src/images/roblox.png"
+                        alt="Marketplace"
+                        className="auth-illustration"
+                    />
                 </div>
             </div>
         </div>

@@ -1,99 +1,81 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-    font-family: "Roboto Light", sans-serif;
-    background: #f8fafc;
-}
-
-#root {
-    width: 100%;
-    height: 100%;
-}
-
 .auth-page {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f8fafc;
+    font-family: "Inter", sans-serif;
 }
 
-.auth-container {
-    display: flex;
-    width: 900px;
-    height: 520px;
-    border-radius: 18px;
+.glass-bg {
+    background: linear-gradient(135deg, #eff6ff, #fdf2f8, #f8fafc);
+    position: relative;
     overflow: hidden;
-    background: white;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
 }
 
-.auth-image {
-    flex: 1;
-    background: #f8fafc;
+.glass-bg::before,
+.glass-bg::after {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.6;
+}
+
+.glass-bg::before {
+    background: #2563eb;
+    top: -120px;
+    left: -120px;
+}
+
+.glass-bg::after {
+    background: #ec4899;
+    bottom: -150px;
+    right: -150px;
+}
+
+.auth-glass-card {
+    width: 950px;
+    height: 540px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-right: 1px solid #e5e7eb;
+    border-radius: 24px;
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.12);
+
+    position: relative;
+    z-index: 2;
 }
 
-.side-image {
-    width: 80%;
-    max-height: 80%;
-    object-fit: contain;
-}
-
-.auth-card {
+.auth-left {
     flex: 1;
-    padding: 3rem;
+    padding: 3.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
 }
 
 .auth-logo {
-    width: 85px;
-    margin: 0 auto 18px;
+    width: 75px;
+    margin-bottom: 18px;
 }
 
-.back-button {
-    border: none;
-    background: none;
+.auth-left h2 {
+    font-size: 30px;
+    font-weight: 900;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.auth-left p {
     font-size: 14px;
-    cursor: pointer;
-    font-weight: 600;
-    color: #111;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 15px;
-    padding: 0;
-}
-
-.back-button:hover {
-    color: #22c55e;
-}
-
-.auth-title {
-    font-size: 28px;
-    font-weight: 800;
-    color: #111;
-    margin-bottom: 8px;
-}
-
-.auth-subtitle {
-    font-size: 14px;
-    color: #444;
-    margin-bottom: 25px;
+    color: #475569;
+    margin-bottom: 26px;
     line-height: 1.5;
+    max-width: 320px;
 }
 
 .auth-form {
@@ -103,44 +85,74 @@ body {
 }
 
 .auth-input {
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
+    padding: 13px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
     font-size: 14px;
-    font-family: inherit;
+    background: rgba(255, 255, 255, 0.85);
+    transition: 0.2s;
 }
 
 .auth-input:focus {
     outline: none;
-    border-color: #22c55e;
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+    border-color: #2563eb;
+    box-shadow: 0px 0px 0px 3px rgba(37, 99, 235, 0.25);
 }
 
 .auth-button {
-    padding: 12px;
-    border-radius: 10px;
+    padding: 13px;
+    border-radius: 14px;
     border: none;
-    font-size: 14px;
-    font-weight: 600;
     cursor: pointer;
-    transition: 0.2s;
+    font-weight: 700;
+    font-size: 14px;
+    transition: 0.25s;
 }
 
 .auth-button {
-    background: #22c55e;
+    background: #2563eb;
     color: white;
 }
 
 .auth-button:hover {
-    background: #16a34a;
+    background: #1d4ed8;
+    transform: translateY(-2px);
 }
 
 .auth-button.outline {
-    background: white;
-    border: 1px solid #ddd;
-    color: #111;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #111827;
 }
 
 .auth-button.outline:hover {
     background: #f1f5f9;
+}
+
+.back-link {
+    margin-top: 22px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2563eb;
+    text-align: left;
+}
+
+.back-link:hover {
+    color: #1d4ed8;
+}
+
+.auth-right {
+    flex: 1;
+    background: rgba(37, 99, 235, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-illustration {
+    width: 80%;
+    object-fit: contain;
 }

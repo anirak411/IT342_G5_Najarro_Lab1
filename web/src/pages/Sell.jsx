@@ -10,6 +10,7 @@ function SellItem() {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState("Others");
+    const [location, setLocation] = useState("");
     const [image, setImage] = useState(null);
 
     const handleSubmit = async (e) => {
@@ -22,6 +23,7 @@ function SellItem() {
             formData.append("description", description);
             formData.append("price", price);
             formData.append("category", category);
+            formData.append("location", location);
             formData.append("image", image);
 
             await axios.post("http://localhost:8080/api/items/upload", formData);
@@ -42,7 +44,7 @@ function SellItem() {
                     </button>
 
                     <h2>Post a New Listing</h2>
-                    <p>Upload your item and start trading with students.</p>
+                    <p>Upload your item and start trading.</p>
                 </div>
 
                 <div className="sell-card">
@@ -55,17 +57,28 @@ function SellItem() {
                                 required
                             />
                             <span>
-                {image ? `📸 ${image.name}` : "Click to upload an image"}
-              </span>
+                                {image ? ` ${image.name}` : "Click to upload an image"}
+                            </span>
                         </label>
 
-                        <input
-                            type="text"
-                            placeholder="Item Title"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            required
-                        />
+                        <div className="form-grid">
+                            <input
+                                type="text"
+                                placeholder="Item Title"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                required
+                            />
+
+                            <input
+                                type="number"
+                                step="0.01"
+                                placeholder="Price (₱)"
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                                required
+                            />
+                        </div>
 
                         <textarea
                             placeholder="Item Description"
@@ -74,24 +87,25 @@ function SellItem() {
                             required
                         />
 
-                        <input
-                            type="number"
-                            step="0.01"
-                            placeholder="Price (₱)"
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
-                            required
-                        />
+                        <div className="form-grid">
+                            <input
+                                type="text"
+                                placeholder="Location (e.g. CIT-U)"
+                                value={location}
+                                onChange={(e) => setLocation(e.target.value)}
+                                required
+                            />
 
-                        <select
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                        >
-                            <option>Electronics</option>
-                            <option>Clothing</option>
-                            <option>Books</option>
-                            <option>Others</option>
-                        </select>
+                            <select
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                            >
+                                <option value="Electronics">Electronics</option>
+                                <option value="Clothing">Clothing</option>
+                                <option value="Books">Books</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
 
                         <button type="submit" className="post-btn">
                             Post Listing

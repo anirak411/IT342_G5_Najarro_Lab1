@@ -6,7 +6,7 @@
 
 .marketplace-page {
     min-height: 100vh;
-    font-family: "Inter", sans-serif;
+    font-family: "Roboto", sans-serif;
     background: linear-gradient(135deg, #eff6ff, #f8fafc);
 }
 
@@ -199,3 +199,18 @@
 .modal-btn.secondary {
     background: #e2e8f0;
 }
+
+.menu-btn {
+    font-size: 22px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #2563eb;
+}
+
+.menu-btn:hover {
+    opacity: 0.7;
+}
+

@@ -18,7 +18,7 @@ function ItemDetails() {
         try {
             const res = await axios.get(`http://localhost:8080/api/items/${id}`);
             setItem(res.data);
-        } catch (err) {
+        } catch {
             console.log("Failed to load item");
         }
     };
@@ -34,7 +34,7 @@ function ItemDetails() {
             await axios.delete(`http://localhost:8080/api/items/${id}`);
             alert("Listing deleted successfully.");
             navigate("/dashboard");
-        } catch (err) {
+        } catch {
             alert("Failed to delete listing.");
         }
     };
@@ -53,24 +53,34 @@ function ItemDetails() {
 
             <div className="details-card">
                 <div className="details-img-wrapper">
-                    <img src={item.imageUrl} alt="item" />
+                    <img
+                        src={item.imageUrl}
+                        alt={item.itemName}
+                        onError={(e) =>
+                            (e.target.src = "/images/landing-placeholder.png")
+                        }
+                    />
                 </div>
 
                 <div className="details-info">
-                    <h2>{item.title}</h2>
+                    <h2>{item.itemName}</h2>
 
                     <p className="details-price">
                         ₱{Number(item.price).toFixed(2)}
                     </p>
 
-                    <p className="details-desc">{item.description}</p>
+                    <p className="details-desc">
+                        {item.description || "No description provided."}
+                    </p>
 
                     <p className="details-seller">
                         Seller: <strong>{item.sellerName}</strong>
                     </p>
 
                     {!isOwner && (
-                        <button className="contact-btn">Message Seller</button>
+                        <button className="contact-btn">
+                            Message Seller
+                        </button>
                     )}
 
                     {isOwner && (

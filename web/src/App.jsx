@@ -7,6 +7,7 @@ import LandingPage from "./pages/LandingPage.jsx";
 import Profile from "./pages/Profile.jsx";
 import Sell from "./pages/Sell.jsx";
 import ItemDetails from "./pages/ItemDetails.jsx";
+import Settings from "./pages/Settings.jsx";
 
 function App() {
     return (
@@ -19,6 +20,8 @@ function App() {
             <Route path="/profile" element={<Profile/>} />
             <Route path="/sell" element={<Sell/>}/>
             <Route path="/item/:id" element={<ItemDetails />} />
+            <Route path="/settings" element={<Settings />} />
+
         </Routes>
     );
 }

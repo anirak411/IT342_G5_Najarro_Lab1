@@ -1,88 +1,134 @@
 .sell-container {
     min-height: 100vh;
+    font-family: "Roboto", sans-serif;
+    background: linear-gradient(to bottom right, #f8fafc, #eef2ff);
     display: flex;
     justify-content: center;
-    align-items: center;
-    background: #f8fafc;
-    padding: 40px 20px;
+    padding: 70px 20px;
 }
 
 .sell-wrapper {
     width: 100%;
-    max-width: 520px;
+    max-width: 650px;
 }
 
 .sell-header {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
-.sell-card {
-    background: white;
-    border-radius: 18px;
-    padding: 35px;
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+.sell-header h2 {
+    font-size: 30px;
+    font-weight: 900;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.sell-header p {
+    font-size: 14px;
+    color: #6b7280;
 }
 
 .back-btn {
-    display: block;
-    margin-bottom: 15px;
     border: none;
-    background: none;
-    font-size: 14px;
-    font-weight: 600;
+    background: transparent;
     color: #2563eb;
+    font-weight: 700;
     cursor: pointer;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+.back-btn:hover {
+    opacity: 0.75;
+}
+
+.sell-card {
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 22px;
+    padding: 35px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .sell-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 18px;
 }
 
-.upload-box {
-    border: 2px dashed #cbd5e1;
-    padding: 18px;
-    border-radius: 14px;
-    text-align: center;
-    cursor: pointer;
-    font-weight: 500;
-    color: #475569;
-}
-
-.upload-box input {
-    display: none;
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
 }
 
 .sell-form input,
 .sell-form textarea,
 .sell-form select {
     width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(209, 213, 219, 0.7);
     font-size: 14px;
     outline: none;
+    background: rgba(255, 255, 255, 0.8);
+    transition: 0.2s;
+}
+
+.sell-form input:focus,
+.sell-form textarea:focus,
+.sell-form select:focus {
+    border-color: #2563eb;
+    box-shadow: 0px 0px 0px 4px rgba(37, 99, 235, 0.15);
 }
 
 .sell-form textarea {
+    min-height: 120px;
     resize: none;
-    height: 90px;
+}
+
+.upload-box {
+    padding: 22px;
+    border-radius: 18px;
+    border: 2px dashed rgba(37, 99, 235, 0.35);
+    text-align: center;
+    cursor: pointer;
+    font-weight: 700;
+    color: #1f2937;
+    transition: 0.25s;
+    background: rgba(37, 99, 235, 0.06);
+}
+
+.upload-box:hover {
+    border-color: #2563eb;
+    background: rgba(37, 99, 235, 0.12);
+}
+
+.upload-box input {
+    display: none;
+}
+
+.upload-box span {
+    font-size: 14px;
 }
 
 .post-btn {
     margin-top: 10px;
-    padding: 14px;
+    padding: 15px;
+    border-radius: 18px;
     border: none;
-    border-radius: 14px;
-    background: #22c55e;
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
     color: white;
-    font-size: 15px;
-    font-weight: 700;
+    font-weight: 800;
     cursor: pointer;
+    font-size: 15px;
+    transition: 0.25s;
+    box-shadow: 0px 8px 18px rgba(37, 99, 235, 0.25);
 }
 
 .post-btn:hover {
-    background: #16a34a;
+    transform: translateY(-2px);
+    opacity: 0.95;
 }

@@ -13,13 +13,13 @@ function Register() {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:8080/api/auth/register", {
+            await axios.post("http://localhost:8080/api/auth/register", {
                 fullName,
                 email,
                 password,
             });
 
-            alert(res.data);
+            alert("Account created successfully!");
             navigate("/login");
         } catch {
             alert("Registration failed.");
@@ -27,14 +27,16 @@ function Register() {
     };
 
     return (
-        <div className="page">
-            <div className="card-wrapper">
-                <button className="back-button" onClick={() => navigate("/login")}>
-                    ← Back
-                </button>
+        <div className="auth-page glass-bg">
+            <div className="auth-glass-card">
+                <div className="auth-left">
+                    <img
+                        src="/src/images/logo.png"
+                        alt="TradeOff Logo"
+                        className="auth-logo"
+                    />
 
-                <div className="auth-card">
-                    <h2>Register</h2>
+                    <h2>Create Account</h2>
 
                     <form className="auth-form" onSubmit={handleRegister}>
                         <input
@@ -49,7 +51,7 @@ function Register() {
                         <input
                             className="auth-input"
                             type="email"
-                            placeholder="Email"
+                            placeholder="Email Address"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -67,7 +69,27 @@ function Register() {
                         <button className="auth-button" type="submit">
                             Register
                         </button>
+
+                        <button
+                            type="button"
+                            className="auth-button outline"
+                            onClick={() => navigate("/login")}
+                        >
+                            Already have an account?
+                        </button>
                     </form>
+
+                    <button className="back-link" onClick={() => navigate("/")}>
+                        ← Back to Marketplace
+                    </button>
+                </div>
+
+                <div className="auth-right">
+                    <img
+                        src="/src/images/roblox.png"
+                        alt="Marketplace"
+                        className="auth-illustration"
+                    />
                 </div>
             </div>
         </div>
