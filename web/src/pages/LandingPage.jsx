@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/landing.css";
+import { getPrimaryImage } from "../utils/itemImages";
+import { getListingAgeLabel } from "../utils/itemTime";
 
 function LandingPage() {
     const navigate = useNavigate();
@@ -77,7 +79,7 @@ function LandingPage() {
                                 onClick={handleItemClick}
                             >
                                 <img
-                                    src={item.imageUrl}
+                                    src={getPrimaryImage(item)}
                                     alt={item.itemName || item.title}
                                     onError={(e) =>
                                         (e.target.src =
@@ -100,7 +102,7 @@ function LandingPage() {
                                     </p>
 
                                     <p className="preview-text">
-                                        Preview only • Login to view
+                                        {item.condition || "Used"} • {getListingAgeLabel(item)}
                                     </p>
                                 </div>
                             </div>

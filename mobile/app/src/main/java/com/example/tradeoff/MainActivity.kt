@@ -10,6 +10,7 @@ import com.example.tradeoff.ui.theme.LandingScreen
 import com.example.tradeoff.ui.theme.LoginScreen
 import com.example.tradeoff.ui.theme.RegisterScreen
 import com.example.tradeoff.ui.theme.TradeOffTheme
+import com.example.tradeoff.utils.SessionManager
 
 class MainActivity : ComponentActivity() {
 
@@ -21,9 +22,12 @@ class MainActivity : ComponentActivity() {
 
                 // ✅ ADD THIS
                 val context = LocalContext.current
+                val session = remember { SessionManager(context) }
 
                 // ✅ Screen state
-                var screen by remember { mutableStateOf("landing") }
+                var screen by remember {
+                    mutableStateOf(if (session.isLoggedIn()) "dashboard" else "landing")
+                }
 
                 // ✅ Navigation switch
                 when (screen) {

@@ -1,6 +1,7 @@
 package com.it342.backend.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "items")
@@ -15,12 +16,18 @@ public class Item {
     private double price;
 
     private String category;
+    @Column(name = "item_condition")
+    private String condition;
     private String location;
 
     private String sellerName;
     private String sellerEmail;
 
+    @Lob
+    @Column(name = "image_url", columnDefinition = "LONGTEXT")
     private String imageUrl;
+
+    private LocalDateTime createdAt;
 
     public Item() {}
 
@@ -60,6 +67,14 @@ public class Item {
         this.category = category;
     }
 
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
     public String getLocation() {
         return location;
     }
@@ -90,5 +105,20 @@ public class Item {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
     }
 }

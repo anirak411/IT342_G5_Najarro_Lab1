@@ -22,6 +22,14 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String profilePicUrl;
+
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String coverPicUrl;
+
     public User() {}
 
     public User(String fullName, String displayName, String email, String password) {
@@ -49,5 +57,21 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getProfilePicUrl() {
+        return profilePicUrl;
+    }
+
+    public void setProfilePicUrl(String profilePicUrl) {
+        this.profilePicUrl = profilePicUrl;
+    }
+
+    public String getCoverPicUrl() {
+        return coverPicUrl;
+    }
+
+    public void setCoverPicUrl(String coverPicUrl) {
+        this.coverPicUrl = coverPicUrl;
     }
 }

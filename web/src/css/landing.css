@@ -6,9 +6,8 @@
 
 .marketplace-page {
     min-height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    system-ui, sans-serif;
-    background: #f9fafb;
+    font-family: var(--font-apple);
+    background: var(--glass-bg);
     letter-spacing: -0.2px;
 }
 
@@ -112,19 +111,22 @@
 
 .items-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fill, 260px);
+    justify-content: center;
     gap: 22px;
 }
 
 .item-card {
-    background: rgba(255, 255, 255, 0.7);
+    width: 260px;
+    height: 300px;
+    background: var(--glass-surface);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border-radius: 22px;
     overflow: hidden;
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
     transition: 0.28s ease;
 }
 
@@ -135,7 +137,7 @@
 
 .item-card img {
     width: 100%;
-    height: 165px;
+    height: 170px;
     object-fit: cover;
     transition: 0.35s ease;
 }
@@ -145,7 +147,13 @@
 }
 
 .item-info {
-    padding: 16px;
+    height: 130px;
+    padding: 14px 16px;
+    border-top: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(248, 250, 252, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .item-info h3 {
@@ -183,13 +191,13 @@
 
 .modal-box {
     width: 390px;
-    background: rgba(255, 255, 255, 0.75);
+    background: var(--glass-surface);
     backdrop-filter: blur(26px);
     -webkit-backdrop-filter: blur(26px);
     padding: 30px;
     border-radius: 24px;
     text-align: center;
-    box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--glass-shadow);
 }
 
 .modal-box h2 {
@@ -253,4 +261,25 @@
 .menu-btn:hover {
     opacity: 0.7;
     transform: scale(1.08);
+}
+
+@media (max-width: 640px) {
+    .marketplace-header {
+        padding: 16px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+
+    .items-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .item-card {
+        width: min(100%, 320px);
+    }
 }

@@ -4,23 +4,13 @@
     justify-content: center;
     align-items: center;
 
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    system-ui, sans-serif;
+    font-family: var(--font-apple);
 
-    background: #f9fafb;
+    background: var(--glass-bg);
 }
 
 .glass-bg {
-    background: radial-gradient(
-            circle at top left,
-            rgba(37, 99, 235, 0.12),
-            transparent 55%
-    ),
-    radial-gradient(
-            circle at bottom right,
-            rgba(15, 23, 42, 0.08),
-            transparent 60%
-    );
+    background: rgba(245, 248, 252, 0.9);
     overflow: hidden;
 }
 
@@ -32,13 +22,12 @@
     border-radius: 28px;
     overflow: hidden;
 
-    background: rgba(255, 255, 255, 0.65);
+    background: var(--glass-surface);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
 
-    border: 1px solid rgba(255, 255, 255, 0.35);
-
-    box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
 
     position: relative;
 }
@@ -156,7 +145,7 @@
 
 .auth-right {
     flex: 1;
-    background: rgba(15, 23, 42, 0.03);
+    background: rgba(248, 250, 252, 0.85);
 
     display: flex;
     justify-content: center;
@@ -167,4 +156,21 @@
     width: 78%;
     object-fit: contain;
     opacity: 0.95;
+}
+
+@media (max-width: 900px) {
+    .auth-glass-card {
+        width: 94%;
+        height: auto;
+        min-height: 520px;
+        flex-direction: column;
+    }
+
+    .auth-left {
+        padding: 2rem 1.4rem;
+    }
+
+    .auth-right {
+        min-height: 180px;
+    }
 }

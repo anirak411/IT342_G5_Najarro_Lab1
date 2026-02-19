@@ -2,10 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import "../css/profile.css";
+import { getPrimaryImage } from "../utils/itemImages";
+import BackButton from "../components/BackButton";
+import { getListingAgeLabel } from "../utils/itemTime";
 
 function SellerProfile() {
     const { sellerName } = useParams();
     const navigate = useNavigate();
+    const formatPrice = (value) =>
+        Number(value || 0).toLocaleString("en-PH", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        });
 
     const [listings, setListings] = useState([]);
 
@@ -30,9 +38,7 @@ function SellerProfile() {
     return (
         <div className="profile-page">
             <header className="profile-navbar">
-                <button className="back-btn" onClick={() => navigate(-1)}>
-                    ← Back
-                </button>
+                <BackButton fallback="/dashboard" />
 
                 <h2 className="profile-logo">{sellerName}'s Profile</h2>
             </header>
@@ -51,7 +57,7 @@ function SellerProfile() {
                                 onClick={() => navigate(`/item/${item.id}`)}
                             >
                                 <img
-                                    src={item.imageUrl}
+                                    src={getPrimaryImage(item)}
                                     alt={item.title}
                                     onError={(e) =>
                                         (e.target.src =
@@ -62,7 +68,10 @@ function SellerProfile() {
                                 <div className="listing-info">
                                     <h4>{item.title}</h4>
                                     <p className="listing-price">
-                                        ₱{Number(item.price).toFixed(2)}
+                                        ₱{formatPrice(item.price)}
+                                    </p>
+                                    <p className="listing-category">
+                                        {item.condition || "Used"} • {getListingAgeLabel(item)}
                                     </p>
                                 </div>
                             </div>

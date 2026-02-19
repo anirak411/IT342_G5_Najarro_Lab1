@@ -72,7 +72,9 @@ public class AuthController {
                 new UserProfileResponse(
                         user.getDisplayName(),
                         user.getFullName(),
-                        user.getEmail()
+                        user.getEmail(),
+                        user.getProfilePicUrl(),
+                        user.getCoverPicUrl()
                 );
 
         return ResponseEntity.ok(

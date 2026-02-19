@@ -1,15 +1,494 @@
-* {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+.marketplace-page {
+    font-family: var(--font-apple);
+    background: #f5f8fc;
+    min-height: 100vh;
+}
+
+/* Smooth shift when sidebar opens */
+.marketplace-content {
+    transition: margin 0.45s ease;
+}
+
+.marketplace-page.shifted .marketplace-content {
+    margin-left: 270px;
+}
+
+/* Navbar */
+.marketplace-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(22px);
+
+    padding: 18px 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-btn {
+    font-size: 22px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Buttons */
+.sell-btn {
+    padding: 11px 20px;
+    border-radius: 999px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.sell-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Bell Icon */
+.icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+
+    cursor: pointer;
+    transition: 0.25s ease;
+    position: relative;
+}
+
+.icon-btn:hover {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* Profile Button */
+.profile-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(15, 23, 42, 0.85);
+    color: white;
+
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.25s ease;
+}
+
+.profile-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-btn:hover {
+    transform: scale(1.06);
+}
+
+/* Hero Banner */
+.hero-banner {
+    height: 340px;
+    border-radius: 0 0 32px 32px;
+    overflow: hidden;
+
+    background: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f")
+    center/cover no-repeat;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+}
+
+.hero-overlay {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+/* Search Bar */
+.hero-search {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(18px);
+
+    padding: 10px;
+    border-radius: 999px;
+
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 14px 18px;
+    font-size: 15px;
+    background: transparent;
+    color: white;
+}
+
+.search-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.search-btn:hover {
+    transform: scale(1.08);
+}
+
+/* Filters */
+.filter-bar {
+    margin-top: 22px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.filter-bar select {
+    appearance: none;
+    padding: 12px 18px;
+    padding-right: 46px;
+
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(18px);
+
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    outline: none;
+
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.18);
+    transition: 0.25s ease;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 20 20'%3E%3Cpath d='M6 8l4 4 4-4' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 16px;
+}
+
+.filter-bar select:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.filter-bar option {
+    background: white;
+    color: #0f172a;
+}
+
+/* Listings */
+.recent-section {
+    padding: 50px 60px;
+}
+
+.listing-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.listing-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-4px);
+}
+
+.listing-image-wrap {
+    height: 190px;
+}
+
+.listing-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 3000;
+}
+
+/* FB Modal */
+.fb-modal {
+    width: 92%;
+    max-width: 1200px;
+    height: 650px;
+
+    background: white;
+    border-radius: 18px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.fb-modal-left {
+    flex: 2;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.fb-modal-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.photo-carousel-btn {
+    position: absolute;
+    bottom: 10px;
+    top: auto;
+    transform: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: rgba(15, 23, 42, 0.55);
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.photo-carousel-btn.left {
+    left: 10px;
+}
+
+.photo-carousel-btn.right {
+    right: 10px;
+}
+
+.photo-carousel-indicator {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.6);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.fb-modal-right {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Modal Controls */
+.fb-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.9);
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.22);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.fb-close:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 1);
+}
+
+.fb-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+
+    border: none;
+    cursor: pointer;
+
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+}
+
+.fb-arrow.left {
+    left: 18px;
+}
+
+.fb-arrow.right {
+    right: 18px;
+}
+
+/* Sell Modal */
+.sell-modal {
+    width: 480px;
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    position: relative;
+}
+
+.sell-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.sell-modal input,
+.sell-modal textarea {
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+    outline: none;
+}
+
+.sell-modal textarea {
+    resize: none;
+    height: 90px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.upload-box {
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px dashed #94a3b8;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    color: #334155;
+}
+
+.upload-box input {
+    display: none;
+}
+
+.post-btn {
+    padding: 12px;
+    border-radius: 14px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
 }
 
 .marketplace-page {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    "SF Pro Text", system-ui, sans-serif;
-    background: linear-gradient(to bottom right, #f9fafb, #e8f0ff);
+    font-family: var(--font-apple);
+    background: #f5f8fc;
     min-height: 100vh;
-    font-weight: 400;
-    letter-spacing: -0.2px;
+}
+
+.marketplace-content {
+    transition: margin 0.45s ease;
+}
+
+.marketplace-page.shifted .marketplace-content {
+    margin-left: 270px;
 }
 
 .marketplace-navbar {
@@ -22,493 +501,444 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.menu-btn {
+    font-size: 22px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 
 .logo {
     font-size: 22px;
-    font-weight: 600;
+    font-weight: 700;
     color: #2563eb;
     cursor: pointer;
-    letter-spacing: -0.6px;
 }
 
 .nav-actions {
     display: flex;
-    gap: 14px;
     align-items: center;
+    gap: 14px;
 }
 
 .sell-btn {
-    background: linear-gradient(to right, #2563eb, #3b82f6);
-    border: none;
     padding: 11px 20px;
     border-radius: 999px;
+    border: none;
+    background: #2563eb;
     color: white;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow: 0px 10px 22px rgba(37, 99, 235, 0.22);
+    transition: 0.25s ease;
 }
 
 .sell-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0px 14px 30px rgba(37, 99, 235, 0.32);
 }
 
-.profile-circle {
+.icon-btn {
     width: 44px;
     height: 44px;
     border-radius: 50%;
     border: none;
-    background: rgba(15, 23, 42, 0.85);
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
     transition: 0.25s ease;
 }
 
-.profile-circle:hover {
-    transform: scale(1.05);
+.icon-btn:hover {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.35);
 }
 
-.profile-pic {
+.profile-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: rgba(15, 23, 42, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: 0.25s ease;
+}
+
+.profile-btn img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.hero-banner {
-    height: 340px;
-    border-radius: 0px 0px 32px 32px;
-    overflow: hidden;
-    background: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f")
-    center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.hero-banner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.55);
-}
-
-.hero-overlay {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: white;
-    max-width: 720px;
-}
-
-.hero-overlay h1 {
-    font-size: 46px;
-    font-weight: 600;
-    margin-bottom: 24px;
-    letter-spacing: -1px;
-}
-
-.hero-search {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(20px);
-    border-radius: 999px;
-    padding: 10px;
-    max-width: 560px;
-    margin: auto;
-    box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.18);
-}
-
-.hero-search input {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 14px 18px;
-    border-radius: 999px;
-    font-size: 15px;
-    font-weight: 400;
-    background: transparent;
-    color: white;
-}
-
-.hero-search input::placeholder {
-    color: rgba(255, 255, 255, 0.75);
-}
-
-.hero-search button {
-    border: none;
-    padding: 12px 18px;
-    border-radius: 999px;
-    background: linear-gradient(to right, #2563eb, #3b82f6);
-    color: white;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
-    transition: 0.25s ease;
-}
-
-.hero-search button:hover {
-    transform: translateY(-2px);
-}
-
-.recent-section {
-    padding: 60px;
-}
-
-.recent-header h2 {
-    font-size: 26px;
-    font-weight: 600;
-    color: #0f172a;
-    letter-spacing: -0.6px;
-}
-
-.empty-text {
-    margin-top: 20px;
-    color: #64748b;
-    font-weight: 400;
-}
-
-.listing-row {
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 250px);
-    gap: 24px;
-    justify-content: start;
-}
-
-.listing-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(18px);
-    border-radius: 22px;
-    overflow: hidden;
-    width: 250px;
-    height: 330px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.08);
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.listing-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0px 20px 45px rgba(0, 0, 0, 0.14);
-}
-
-.listing-card img {
-    width: 100%;
-    height: 185px;
-    object-fit: cover;
-    transition: 0.4s ease;
-}
-
-.listing-card:hover img {
+.profile-btn:hover {
     transform: scale(1.06);
 }
 
-.listing-info {
-    padding: 18px;
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 216px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(30px) saturate(175%);
+    -webkit-backdrop-filter: blur(30px) saturate(175%);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.14);
+    overflow: hidden;
+    z-index: 5000;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 2px;
+    padding: 6px;
+    animation: fadeIn 0.16s ease;
 }
 
-.listing-info h3 {
+.dropdown-menu button {
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    text-align: left;
     font-size: 15px;
-    font-weight: 500;
-    margin: 0;
-    color: #0f172a;
-}
-
-.price {
-    font-size: 14px;
     font-weight: 600;
-    color: #2563eb;
-    margin-top: 2px;
+    color: #0f172a;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.16s ease, color 0.16s ease;
 }
 
-.seller {
-    font-size: 13px;
-    font-weight: 400;
+.dropdown-menu button:hover {
+    background: rgba(241, 245, 249, 0.95);
+}
+
+.dropdown-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: #64748b;
-    margin: 0;
-    line-height: 1.3;
+    padding: 8px 10px 10px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+    margin-bottom: 2px;
 }
 
-.seller + .seller {
-    margin-top: 2px;
-    opacity: 0.85;
+.dropdown-empty {
+    padding: 10px 12px;
+    font-size: 13px;
+    color: #64748b;
+    border-radius: 10px;
+    background: transparent;
 }
 
-.marketplace-page.shifted {
-    margin-left: 270px;
-    transition: 0.35s ease;
-}
-.filter-bar {
-    margin-top: 22px;
+.notif-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #ef4444;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 14px;
+    padding: 0 4px;
+}
+
+.logout-option {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sell-modal select {
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+    outline: none;
+    background: #fff;
+}
+
+.modal-item-price {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+}
+
+.modal-item-title {
+    margin: 6px 0 0;
+    font-size: 24px;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+}
+
+.modal-item-head {
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.modal-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.modal-chip {
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.16);
+    border: 1px solid rgba(148, 163, 184, 0.26);
+    font-size: 12px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.modal-info-card {
+    padding: 13px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    background: rgba(255, 255, 255, 0.56);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.modal-description-card {
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    background: rgba(248, 250, 252, 0.8);
+    min-height: 120px;
+}
+
+.modal-description-label {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+}
+
+.modal-item-seller {
+    margin: 0;
+    font-size: 14px;
+    color: #334155;
+    font-weight: 600;
+}
+
+.modal-item-sub {
+    margin: 8px 0 0;
+    color: #475569;
+    font-size: 14px;
+}
+
+.modal-item-description {
+    margin: 0;
+    color: #334155;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.post-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.owner-actions {
+    display: flex;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
-.filter-bar select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
-    padding: 12px 18px;
-    padding-right: 42px;
-
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-
-    background: rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(18px);
-
-    font-size: 14px;
-    font-weight: 500;
-    color: white;
-
-    cursor: pointer;
-    outline: none;
-
-    transition: 0.25s ease;
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.18);
-
-    position: relative;
+.modal-actions {
+    margin-top: auto;
 }
 
-.filter-bar select:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.25);
+.post-btn.modal-actions {
+    width: 100%;
 }
 
-.filter-bar select:focus {
-    border: 1px solid rgba(59, 130, 246, 0.8);
-    box-shadow: 0px 0px 0px 3px rgba(37, 99, 235, 0.35);
-}
-
-.filter-bar select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 7.5L10 12l4.5-4.5' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 16px center;
-    background-size: 16px;
-}
-
-.filter-bar option {
-    color: #0f172a;
-    background: white;
-    font-weight: 500;
-}
-
-.icon-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(15px);
-    font-size: 18px;
-    cursor: pointer;
-    transition: 0.25s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.icon-btn:hover {
-    transform: scale(1.08);
-    background: rgba(255, 255, 255, 0.35);
-}
-
-.profile-dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 55px;
-    right: 0;
-    width: 190px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    z-index: 999;
-}
-
-.dropdown-menu button {
-    padding: 14px 16px;
-    border: none;
-    background: transparent;
-    text-align: left;
-    font-size: 14px;
-    cursor: pointer;
-    transition: 0.2s ease;
-    font-weight: 500;
-}
-
-.dropdown-menu button:hover {
-    background: rgba(37, 99, 235, 0.12);
-}
-
-.logout-btn {
-    color: #dc2626;
-    font-weight: 600;
-}
-
-.icon-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(15px);
-    font-size: 18px;
-    cursor: pointer;
-    transition: 0.25s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.icon-btn:hover {
-    transform: scale(1.08);
-    background: rgba(255, 255, 255, 0.35);
-}
-
-.profile-dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 55px;
-    right: 0;
-    width: 180px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    z-index: 999;
-}
-
-.dropdown-menu button {
-    padding: 14px 16px;
-    border: none;
-    background: transparent;
-    text-align: left;
-    font-size: 14px;
-    cursor: pointer;
-    transition: 0.2s ease;
-    font-weight: 500;
-}
-
-.dropdown-menu button:hover {
-    background: rgba(37, 99, 235, 0.12);
-}
-
-.logout-btn {
-    color: #dc2626;
-    font-weight: 600;
-}
-
-.chat-widget {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    border: none;
-    background: linear-gradient(to right, #2563eb, #3b82f6);
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0px 18px 40px rgba(37, 99, 235, 0.35);
-    transition: 0.3s ease;
-    z-index: 999;
-}
-
-.chat-widget:hover {
-    transform: translateY(-4px);
-}
-
-.chat-popup {
-    position: fixed;
-    bottom: 100px;
-    right: 25px;
-    width: 320px;
-    height: 420px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 18px;
-    box-shadow: 0px 20px 45px rgba(0, 0, 0, 0.18);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 999;
-}
-
-.chat-header {
-    padding: 14px 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.chat-header button {
-    border: none;
-    background: transparent;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.chat-body {
+.owner-actions.modal-actions .post-btn,
+.owner-actions.modal-actions .owner-delete-btn {
     flex: 1;
-    padding: 16px;
-    font-size: 14px;
-    color: #64748b;
 }
 
-.chat-input {
-    display: flex;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.chat-input input {
-    flex: 1;
-    border: none;
-    padding: 12px;
-    outline: none;
-    font-size: 14px;
-}
-
-.chat-input button {
-    border: none;
+.owner-delete-btn {
     padding: 12px 16px;
-    background: #2563eb;
-    color: white;
+    border: none;
+    border-radius: 14px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
+    background: #111827;
+    color: #ffffff;
 }
 
+.owner-delete-btn:hover {
+    background: #0b1220;
+}
 
+@media (max-width: 900px) {
+    .fb-modal {
+        height: auto;
+        max-height: 90vh;
+        flex-direction: column;
+    }
+
+    .fb-modal-left {
+        min-height: 260px;
+    }
+
+    .fb-modal-right {
+        padding: 20px;
+        overflow-y: auto;
+    }
+
+    .modal-description-card {
+        min-height: 0;
+    }
+
+    .fb-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+/* Modern glass refresh */
+.marketplace-page {
+    background: #f5f8fc;
+}
+
+.marketplace-navbar {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.58);
+    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+}
+
+.hero-banner {
+    box-shadow: inset 0 -90px 140px rgba(15, 23, 42, 0.35),
+        0 24px 60px rgba(15, 23, 42, 0.18);
+}
+
+.recent-section h2 {
+    font-size: 1.7rem;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+    color: #0f172a;
+}
+
+.listing-card {
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.09);
+}
+
+.listing-image-wrap {
+    height: 200px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.listing-info {
+    padding: 14px;
+    background: transparent;
+    border-top: none;
+}
+
+.listing-price {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.listing-title {
+    margin: 6px 0 4px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.listing-sub {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.fb-modal {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(22px);
+    box-shadow: 0 30px 70px rgba(15, 23, 42, 0.35);
+}
+
+.fb-modal-right {
+    background: rgba(255, 255, 255, 0.95);
+    border-left: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.fb-arrow {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.24);
+}
+
+.sell-modal {
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(22px);
+    box-shadow: 0 24px 58px rgba(15, 23, 42, 0.22);
+}
+
+/* Visibility + glass refinements */
+.fb-arrow {
+    z-index: 8;
+    color: #0f172a;
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.sell-modal {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.sell-modal h3 {
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+}
+
+.sell-modal input,
+.sell-modal textarea,
+.sell-modal select {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.upload-box {
+    background: rgba(248, 250, 252, 0.75);
+    border: 1px dashed rgba(100, 116, 139, 0.55);
+}

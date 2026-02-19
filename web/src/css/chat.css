@@ -1,26 +1,49 @@
 .chat-float-btn {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: #22c55e;
-    color: white;
-    border: none;
-    padding: 14px 18px;
-    border-radius: 50px;
+    bottom: 24px;
+    right: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: rgba(37, 99, 235, 0.95);
+    color: #fff;
+    padding: 16px 28px;
+    border-radius: 12px;
     font-weight: 600;
     cursor: pointer;
     z-index: 9999;
+    box-shadow: 0 14px 30px rgba(30, 64, 175, 0.35);
+    position: fixed;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 90px;
+    justify-content: center;
+}
+
+.chat-badge {
+    min-width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #ef4444;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
 }
 
 .chat-box {
     position: fixed;
-    bottom: 90px;
-    right: 25px;
-    width: 340px;
-    height: 450px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    bottom: 84px;
+    right: 24px;
+    width: 360px;
+    height: 500px;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(24px);
+    box-shadow: 0 24px 55px rgba(15, 23, 42, 0.25);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -28,45 +51,50 @@
 }
 
 .chat-header {
-    background: #f8fafc;
-    padding: 12px 14px;
+    background: rgba(248, 250, 252, 0.86);
+    padding: 14px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: 700;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.3);
 }
 
 .chat-header button {
-    background: none;
+    background: rgba(15, 23, 42, 0.08);
     border: none;
-    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 14px;
     cursor: pointer;
 }
 
 .chat-contacts {
     display: flex;
-    gap: 6px;
+    gap: 8px;
     padding: 10px;
     overflow-x: auto;
-    border-bottom: 1px solid #eee;
-    background: white;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.24);
+    background: rgba(255, 255, 255, 0.75);
 }
 
 .contact {
-    border: none;
-    background: #f1f5f9;
-    padding: 6px 10px;
-    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: rgba(241, 245, 249, 0.92);
+    padding: 7px 12px;
+    border-radius: 999px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
+    color: #334155;
     white-space: nowrap;
 }
 
 .contact.active {
-    background: #22c55e;
+    background: rgba(37, 99, 235, 0.95);
     color: white;
+    border-color: transparent;
 }
 
 .chat-body {
@@ -74,41 +102,62 @@
     padding: 12px;
     overflow-y: auto;
     font-size: 14px;
-    background: #fafafa;
+    background: rgba(248, 250, 252, 0.52);
+}
+
+.empty-chat {
+    text-align: center;
+    color: #64748b;
+    margin-top: 60px;
 }
 
 .chat-message {
-    background: #f1f5f9;
-    padding: 8px 10px;
+    background: rgba(241, 245, 249, 0.92);
+    padding: 9px 12px;
     border-radius: 12px;
     margin-bottom: 10px;
     max-width: 85%;
+    color: #1e293b;
 }
 
 .chat-message.user {
-    background: #dcfce7;
+    background: rgba(219, 234, 254, 0.92);
     margin-left: auto;
 }
 
 .chat-input-area {
     display: flex;
-    border-top: 1px solid #eee;
-    background: white;
+    border-top: 1px solid rgba(148, 163, 184, 0.24);
+    background: rgba(255, 255, 255, 0.84);
+    padding: 8px;
+    gap: 8px;
 }
 
 .chat-input-area input {
     flex: 1;
-    padding: 10px;
-    border: none;
+    padding: 11px 12px;
+    border: 1px solid rgba(148, 163, 184, 0.26);
+    border-radius: 12px;
     outline: none;
     font-size: 14px;
+    background: rgba(248, 250, 252, 0.96);
 }
 
 .chat-input-area button {
-    background: #22c55e;
+    background: rgba(37, 99, 235, 0.95);
     border: none;
     color: white;
     padding: 0 16px;
+    border-radius: 12px;
     cursor: pointer;
     font-weight: 600;
+}
+
+@media (max-width: 640px) {
+    .chat-box {
+        right: 10px;
+        bottom: 74px;
+        width: calc(100vw - 20px);
+        height: 64vh;
+    }
 }

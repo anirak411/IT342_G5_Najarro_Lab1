@@ -6,16 +6,15 @@
 }
 
 .profile-page {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    "SF Pro Text", system-ui, sans-serif;
+    font-family: var(--font-apple);
     min-height: 100vh;
-    background: linear-gradient(to bottom right, #f9fafb, #e8f0ff);
+    background: var(--glass-bg);
 }
 
 .back-btn {
     position: fixed;
-    top: 22px;
-    left: 22px;
+    top: 16px;
+    left: 68px;
     z-index: 999;
 
     width: 44px;
@@ -95,11 +94,11 @@
     padding: 32px;
     border-radius: 28px;
 
-    background: rgba(255, 255, 255, 0.72);
+    background: var(--glass-surface);
     backdrop-filter: blur(22px);
 
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0px 20px 55px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
 
     display: flex;
     align-items: center;
@@ -125,7 +124,7 @@
 }
 
 .profile-avatar {
-    background: linear-gradient(to right, #2563eb, #3b82f6);
+    background: #2563eb;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -223,14 +222,14 @@
 }
 
 .listing-card {
-    background: rgba(255, 255, 255, 0.78);
+    background: var(--glass-surface);
     backdrop-filter: blur(18px);
 
     border-radius: 22px;
     overflow: hidden;
 
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
 
     cursor: pointer;
     transition: 0.3s ease;
@@ -248,6 +247,8 @@
 
 .listing-info {
     padding: 16px;
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(248, 250, 252, 0.92);
 }
 
 .listing-info h4 {
@@ -281,3 +282,109 @@
     color: rgba(0, 0, 0, 0.55);
 }
 
+.profile-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.66);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.68);
+}
+
+.profile-logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.crop-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 6000;
+}
+
+.crop-modal {
+    width: min(680px, 96vw);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+    padding: 18px;
+}
+
+.crop-modal h3 {
+    margin: 0 0 14px;
+    font-size: 20px;
+}
+
+.crop-preview {
+    margin: 0 auto;
+    overflow: hidden;
+    background: #0f172a;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    position: relative;
+}
+
+.crop-preview.circle {
+    border-radius: 50%;
+}
+
+.crop-preview.rect {
+    border-radius: 14px;
+}
+
+.crop-preview img {
+    position: absolute;
+    object-fit: cover;
+}
+
+.crop-controls {
+    margin-top: 14px;
+    display: grid;
+    gap: 10px;
+}
+
+.crop-controls label {
+    display: grid;
+    gap: 6px;
+    font-size: 13px;
+    color: #334155;
+    font-weight: 600;
+}
+
+.crop-controls input[type="range"] {
+    width: 100%;
+}
+
+.crop-actions {
+    margin-top: 14px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.crop-btn {
+    border: none;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.crop-btn.primary {
+    background: #2563eb;
+    color: #fff;
+}
+
+.crop-btn.secondary {
+    background: rgba(15, 23, 42, 0.08);
+    color: #0f172a;
+}

@@ -1,8 +1,6 @@
 .details-page {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    system-ui, sans-serif;
-
-    background: #f9fafb;
+    font-family: var(--font-apple);
+    background: #f5f8fc;
     min-height: 100vh;
     padding: 60px;
 }
@@ -14,7 +12,7 @@
     color: #64748b;
 }
 
-.back-btn {
+.details-back-btn {
     border: none;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(18px);
@@ -29,7 +27,7 @@
     transition: 0.2s ease;
 }
 
-.back-btn:hover {
+.details-back-btn:hover {
     transform: translateY(-2px);
 }
 
@@ -44,7 +42,8 @@
     border-radius: 28px;
     overflow: hidden;
 
-    box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.76);
+    box-shadow: 0px 24px 55px rgba(15, 23, 42, 0.14);
 }
 
 .details-image img {
@@ -53,9 +52,43 @@
     object-fit: cover;
 }
 
+.details-thumb-row {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    overflow-x: auto;
+    background: rgba(248, 250, 252, 0.88);
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.details-thumb-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    overflow: hidden;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+
+.details-thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.details-thumb-btn.active {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
 .details-info {
     flex: 1;
     padding: 40px;
+    background: rgba(255, 255, 255, 0.88);
+    border-left: 1px solid rgba(148, 163, 184, 0.25);
 }
 
 .details-price {
@@ -148,7 +181,8 @@
     cursor: pointer;
 
     transition: 0.25s ease;
-    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow: 0px 14px 30px rgba(15, 23, 42, 0.12);
 }
 
 .recommended-card:hover {
@@ -177,4 +211,31 @@
     font-size: 13px;
     font-weight: 600;
     color: #2563eb;
+}
+
+@media (max-width: 900px) {
+    .details-page {
+        padding: 24px 14px 36px;
+    }
+
+    .details-card {
+        margin-top: 20px;
+        gap: 0;
+        flex-direction: column;
+    }
+
+    .details-image img {
+        width: 100%;
+        height: 260px;
+    }
+
+    .details-info {
+        padding: 20px;
+        border-left: none;
+        border-top: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .recommended-section {
+        margin-top: 28px;
+    }
 }

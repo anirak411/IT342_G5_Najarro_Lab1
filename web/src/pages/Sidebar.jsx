@@ -7,28 +7,49 @@ function Sidebar({ isOpen, onToggle }) {
 
     const goTo = (path) => {
         navigate(path);
-        onToggle();
+        if (onToggle) onToggle();
     };
 
     const handleLogout = () => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("displayName");
+        localStorage.removeItem("fullName");
         localStorage.removeItem("email");
         navigate("/login");
+        if (onToggle) onToggle();
     };
 
     return (
         <div className={`sidebar ${isOpen ? "open" : ""}`}>
-            <h2 className="sidebar-logo" onClick={() => goTo("/dashboard")}>
-                TradeOff
-            </h2>
+            <div className="sidebar-header">
+                <h2 className="sidebar-logo" onClick={() => goTo("/dashboard")}>
+                    TradeOff
+                </h2>
+                <button
+                    className="sidebar-toggle-btn"
+                    onClick={onToggle}
+                    aria-label="Collapse sidebar"
+                >
+                    ☰
+                </button>
+            </div>
 
             <nav className="sidebar-links">
-                <button onClick={() => goTo("/dashboard")}>Marketplace</button>
+                <button onClick={() => goTo("/dashboard")}>
+                    Marketplace
+                </button>
 
-                <button onClick={() => goTo("/my-items")}>My Listings</button>
+                <button onClick={() => goTo("/my-items")}>
+                    My Listings
+                </button>
 
-                <button onClick={() => goTo("/profile")}>Profile</button>
+                <button onClick={() => goTo("/profile")}>
+                    Profile
+                </button>
 
-                <button onClick={() => goTo("/settings")}>Settings</button>
+                <button onClick={() => goTo("/settings")}>
+                    Settings
+                </button>
             </nav>
 
             <div className="sidebar-footer">

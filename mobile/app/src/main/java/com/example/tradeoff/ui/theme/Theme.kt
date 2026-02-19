@@ -19,7 +19,7 @@ private val TradeOffColorScheme = lightColorScheme(
 fun TradeOffTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = TradeOffColorScheme,
-        typography = Typography(),
+        typography = AppTypography,
         content = content
     )
 }

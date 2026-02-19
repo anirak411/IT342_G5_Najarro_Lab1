@@ -1,0 +1,61 @@
+.settings-page {
+    min-height: 100vh;
+    background: var(--glass-bg);
+    padding: 42px 20px;
+}
+
+.settings-back-btn {
+    position: fixed;
+    top: 16px;
+    left: 68px;
+    z-index: 2601;
+}
+
+.settings-shell {
+    width: min(880px, 96%);
+    margin: 0 auto;
+    padding: 28px;
+    border-radius: 26px;
+    background: var(--glass-surface);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+.settings-title {
+    font-size: 30px;
+    letter-spacing: -0.04em;
+    margin-bottom: 8px;
+}
+
+.settings-sub {
+    color: var(--text-sub);
+    margin-bottom: 20px;
+}
+
+.settings-grid {
+    display: grid;
+    gap: 14px;
+}
+
+.settings-card {
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    background: rgba(248, 250, 252, 0.9);
+}
+
+.settings-card h3 {
+    margin-bottom: 4px;
+    font-size: 16px;
+}
+
+.settings-card p {
+    color: var(--text-sub);
+    font-size: 14px;
+}
+
+@media (max-width: 640px) {
+    .settings-back-btn {
+        left: 60px;
+    }
+}

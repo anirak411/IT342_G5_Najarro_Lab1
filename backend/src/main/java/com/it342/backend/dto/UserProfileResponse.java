@@ -5,11 +5,21 @@ public class UserProfileResponse {
     private String displayName;
     private String fullName;
     private String email;
+    private String profilePicUrl;
+    private String coverPicUrl;
 
-    public UserProfileResponse(String displayName, String fullName, String email) {
+    public UserProfileResponse(
+            String displayName,
+            String fullName,
+            String email,
+            String profilePicUrl,
+            String coverPicUrl
+    ) {
         this.displayName = displayName;
         this.fullName = fullName;
         this.email = email;
+        this.profilePicUrl = profilePicUrl;
+        this.coverPicUrl = coverPicUrl;
     }
 
     public String getDisplayName() {
@@ -22,5 +32,13 @@ public class UserProfileResponse {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getProfilePicUrl() {
+        return profilePicUrl;
+    }
+
+    public String getCoverPicUrl() {
+        return coverPicUrl;
     }
 }

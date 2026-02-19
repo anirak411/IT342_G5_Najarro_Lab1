@@ -1,42 +1,246 @@
+:root {
+    --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --glass-bg: #f5f8fc;
+    --glass-surface: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.72);
+    --glass-shadow: 0 18px 48px rgba(15, 23, 42, 0.14);
+    --text-main: #0f172a;
+    --text-sub: #64748b;
+    --btn-glass-bg: rgba(255, 255, 255, 0.94);
+    --btn-glass-border: rgba(255, 255, 255, 0.8);
+    --btn-glass-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+    --btn-primary-bg: rgba(37, 99, 235, 0.94);
+    --btn-danger-bg: rgba(254, 226, 226, 0.88);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    width: 100%;
+    min-height: 100%;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+    font-family: var(--font-apple);
+    color: var(--text-main);
+    background: var(--glass-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.global-back-btn {
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(14px);
+    color: #1d4ed8;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 10px 14px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card {
-  padding: 2em;
+.global-back-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
 }
 
-.read-the-docs {
-  color: #888;
+/* Unified glass button system */
+.auth-button,
+.header-btn,
+.modal-btn,
+.menu-btn,
+.sell-btn,
+.icon-btn,
+.profile-btn,
+.search-btn,
+.post-btn,
+.owner-delete-btn,
+.fb-close,
+.fb-arrow,
+.photo-carousel-btn,
+.sidebar-links button,
+.logout-btn,
+.sidebar-toggle-btn,
+.global-sidebar-trigger,
+.details-back-btn,
+.apple-btn,
+.chat-float-btn,
+.chat-header button,
+.chat-input-area button,
+.back-btn,
+.crop-btn,
+.global-back-btn,
+.dropdown-menu button {
+    border: 1px solid var(--btn-glass-border) !important;
+    background: var(--btn-glass-bg) !important;
+    color: var(--text-main);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    box-shadow: var(--btn-glass-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease,
+        background 0.2s ease;
+}
+
+.auth-button:hover,
+.header-btn:hover,
+.modal-btn:hover,
+.menu-btn:hover,
+.sell-btn:hover,
+.icon-btn:hover,
+.profile-btn:hover,
+.search-btn:hover,
+.post-btn:hover,
+.owner-delete-btn:hover,
+.fb-close:hover,
+.fb-arrow:hover,
+.photo-carousel-btn:hover,
+.sidebar-links button:hover,
+.logout-btn:hover,
+.sidebar-toggle-btn:hover,
+.global-sidebar-trigger:hover,
+.details-back-btn:hover,
+.apple-btn:hover,
+.chat-float-btn:hover,
+.chat-header button:hover,
+.chat-input-area button:hover,
+.back-btn:hover,
+.crop-btn:hover,
+.global-back-btn:hover,
+.dropdown-menu button:hover {
+    transform: none !important;
+    box-shadow: var(--btn-glass-shadow);
+    filter: brightness(0.98);
+}
+
+.auth-button:active,
+.header-btn:active,
+.modal-btn:active,
+.menu-btn:active,
+.sell-btn:active,
+.icon-btn:active,
+.profile-btn:active,
+.search-btn:active,
+.post-btn:active,
+.owner-delete-btn:active,
+.fb-close:active,
+.fb-arrow:active,
+.photo-carousel-btn:active,
+.sidebar-links button:active,
+.logout-btn:active,
+.sidebar-toggle-btn:active,
+.global-sidebar-trigger:active,
+.details-back-btn:active,
+.apple-btn:active,
+.chat-float-btn:active,
+.chat-header button:active,
+.chat-input-area button:active,
+.back-btn:active,
+.crop-btn:active,
+.global-back-btn:active,
+.dropdown-menu button:active {
+    transform: none !important;
+    filter: brightness(0.95);
+}
+
+.auth-button,
+.header-btn.primary,
+.modal-btn.primary,
+.sell-btn,
+.search-btn,
+.post-btn,
+.apple-btn.primary,
+.chat-float-btn,
+.chat-input-area button,
+.crop-btn.primary {
+    background: var(--btn-primary-bg) !important;
+    color: #ffffff !important;
+    border-color: rgba(125, 211, 252, 0.35) !important;
+    box-shadow: 0 14px 30px rgba(37, 99, 235, 0.28);
+}
+
+.owner-delete-btn,
+.apple-btn.danger {
+    background: rgba(15, 23, 42, 0.92) !important;
+    border-color: rgba(15, 23, 42, 0.55) !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.2);
+}
+
+.icon-btn,
+.profile-btn,
+.menu-btn,
+.search-btn,
+.fb-close,
+.fb-arrow,
+.photo-carousel-btn,
+.sidebar-toggle-btn,
+.global-sidebar-trigger,
+.chat-header button,
+.back-btn {
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.2);
+}
+
+/* Smaller, consistent control sizing */
+.auth-button,
+.header-btn,
+.modal-btn,
+.sell-btn,
+.post-btn,
+.owner-delete-btn,
+.apple-btn,
+.chat-float-btn,
+.chat-input-area button,
+.crop-btn,
+.logout-btn,
+.sidebar-links button,
+.dropdown-menu button,
+.global-back-btn {
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    border-radius: 12px !important;
+}
+
+.menu-btn,
+.icon-btn,
+.profile-btn,
+.search-btn,
+.fb-close,
+.fb-arrow,
+.photo-carousel-btn,
+.sidebar-toggle-btn,
+.global-sidebar-trigger,
+.chat-header button,
+.back-btn {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 16px !important;
+}
+
+/* Keep all 3-bar triggers visually consistent */
+.menu-btn,
+.sidebar-toggle-btn,
+.global-sidebar-trigger {
+    border-radius: 10px !important;
+    border: 1px solid rgba(255, 255, 255, 0.74) !important;
+    background: rgba(255, 255, 255, 0.42) !important;
+    backdrop-filter: blur(18px) saturate(170%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(170%) !important;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14) !important;
+    color: #1d4ed8 !important;
 }

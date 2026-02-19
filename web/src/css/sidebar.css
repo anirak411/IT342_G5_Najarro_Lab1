@@ -4,31 +4,22 @@
     left: 0;
     width: 270px;
     height: 100vh;
-
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(34px) saturate(180%);
-    -webkit-backdrop-filter: blur(34px) saturate(180%);
-
-    border-right: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow:
-            0px 20px 55px rgba(0, 0, 0, 0.10),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-
     padding: 26px 20px;
     display: flex;
     flex-direction: column;
+    z-index: 2500;
+
+    background: rgba(255, 255, 255, 0.78);
+    border-right: 1px solid rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(36px) saturate(185%);
+    -webkit-backdrop-filter: blur(36px) saturate(185%);
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.14);
 
     transform: translateX(-110%);
     opacity: 0;
     scale: 0.98;
-
-    transition:
-            transform 0.5s cubic-bezier(0.25, 1, 0.35, 1),
-            opacity 0.35s ease,
-            scale 0.35s ease;
-
-    z-index: 200;
-    will-change: transform, opacity;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.35, 1),
+        opacity 0.35s ease, scale 0.35s ease;
 }
 
 .sidebar.open {
@@ -37,13 +28,17 @@
     scale: 1;
 }
 
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
 .sidebar-logo {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 700;
     color: #2563eb;
-    letter-spacing: -0.6px;
-
-    margin-bottom: 34px;
     cursor: pointer;
 }
 
@@ -54,69 +49,52 @@
 }
 
 .sidebar-links button {
-    width: 100%;
-    border: none;
-    background: transparent;
-    text-align: left;
-
     padding: 12px 16px;
     border-radius: 16px;
-
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.3px;
-
-    color: rgba(15, 23, 42, 0.82);
-
+    border: none;
+    background: transparent;
     cursor: pointer;
-    transition: all 0.22s ease;
+    text-align: left;
 }
 
 .sidebar-links button:hover {
-    background: rgba(255, 255, 255, 0.45);
-    box-shadow:
-            inset 0 0 0 1px rgba(255, 255, 255, 0.35),
-            0px 8px 18px rgba(0, 0, 0, 0.06);
-}
-
-.sidebar-links button:active {
-    transform: scale(0.98);
+    background: rgba(241, 245, 249, 0.92);
 }
 
 .sidebar-footer {
     margin-top: auto;
-    padding-top: 20px;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* Modern Logout Button */
 .logout-btn {
     width: 100%;
     padding: 13px;
     border-radius: 16px;
     border: none;
-
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: -0.3px;
-
     cursor: pointer;
-
-    background: rgba(15, 23, 42, 0.08);
-    color: rgba(15, 23, 42, 0.85);
-
-    box-shadow:
-            inset 0 0 0 1px rgba(255, 255, 255, 0.35),
-            0px 10px 18px rgba(0, 0, 0, 0.05);
-
-    transition: all 0.25s ease;
+    background: rgba(241, 245, 249, 0.92);
 }
 
-.logout-btn:hover {
-    background: rgba(15, 23, 42, 0.12);
-    transform: translateY(-1px);
+.sidebar-toggle-btn {
+    border: none;
+    background: transparent;
+    color: #1d4ed8;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-.logout-btn:active {
-    transform: scale(0.97);
+.sidebar-toggle-btn:hover {
+    opacity: 0.8;
+}
+
+.global-sidebar-trigger {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 2600;
+    border: none;
+    background: transparent;
+    color: #1d4ed8;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: none;
 }

@@ -30,8 +30,13 @@ function Login() {
                         displayName: res.data.data.displayName,
                         fullName: res.data.data.fullName,
                         email: res.data.data.email,
+                        profilePicUrl: res.data.data.profilePicUrl || "",
+                        coverPicUrl: res.data.data.coverPicUrl || "",
                     })
                 );
+                    localStorage.setItem("displayName", res.data.data.displayName);
+                localStorage.setItem("fullName", res.data.data.fullName);
+                localStorage.setItem("email", res.data.data.email);
 
 
                 navigate("/dashboard");
