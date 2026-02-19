@@ -4,17 +4,17 @@ public class ApiResponse {
 
     private boolean success;
     private String message;
-    private String fullName;
+    private Object data;
 
     public ApiResponse(boolean success, String message) {
         this.success = success;
         this.message = message;
     }
 
-    public ApiResponse(boolean success, String message, String fullName) {
+    public ApiResponse(boolean success, String message, Object data) {
         this.success = success;
         this.message = message;
-        this.fullName = fullName;
+        this.data = data;
     }
 
     public boolean isSuccess() {
@@ -25,7 +25,7 @@ public class ApiResponse {
         return message;
     }
 
-    public String getFullName() {
-        return fullName;
+    public Object getData() {
+        return data;
     }
 }

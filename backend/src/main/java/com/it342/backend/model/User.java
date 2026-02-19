@@ -1,6 +1,5 @@
 package com.it342.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,18 +10,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String fullName;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
+    private String displayName;
+
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @JsonIgnore
+    @Column(nullable = false)
     private String password;
 
     public User() {}
 
-    public User(String fullName, String email, String password) {
+    public User(String fullName, String displayName, String email, String password) {
         this.fullName = fullName;
+        this.displayName = displayName;
         this.email = email;
         this.password = password;
     }
@@ -35,23 +39,15 @@ public class User {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public String getDisplayName() {
+        return displayName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

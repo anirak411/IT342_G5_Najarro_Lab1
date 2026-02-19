@@ -1,7 +1,6 @@
 package com.example.tradeoff.model
-data class AuthRequest(
-    val fullName: String,
-    val displayName: String,
+
+data class LoginRequest(
     val email: String,
     val password: String
 )

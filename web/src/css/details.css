@@ -1,305 +1,180 @@
-* {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+.details-page {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    system-ui, sans-serif;
+
+    background: #f9fafb;
+    min-height: 100vh;
+    padding: 60px;
 }
 
-.details-page {
-    min-height: 100vh;
-    padding: 70px 20px;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    "SF Pro Text", system-ui, sans-serif;
-    font-weight: 400;
-    letter-spacing: -0.2px;
-    background: linear-gradient(to bottom right, #f9fafb, #e8f0ff);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.loading-text {
+    text-align: center;
+    margin-top: 80px;
+    font-size: 15px;
+    color: #64748b;
 }
 
 .back-btn {
-    align-self: flex-start;
-    margin-left: 20px;
-    margin-bottom: 25px;
     border: none;
-    background: rgba(255, 255, 255, 0.55);
-    padding: 10px 16px;
-    border-radius: 14px;
-    font-size: 14px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(18px);
+
+    padding: 10px 18px;
+    border-radius: 999px;
+
     font-weight: 500;
-    color: #2563eb;
     cursor: pointer;
-    backdrop-filter: blur(14px);
-    transition: 0.25s ease;
+
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
+    transition: 0.2s ease;
 }
 
 .back-btn:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.75);
 }
 
 .details-card {
-    width: 100%;
-    max-width: 980px;
+    margin-top: 40px;
     display: flex;
+    gap: 40px;
+
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(26px);
+
     border-radius: 28px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.62);
-    backdrop-filter: blur(22px);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.12);
-    transition: 0.35s ease;
+
+    box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.08);
 }
 
-.details-card:hover {
-    transform: translateY(-4px);
-}
-
-.details-img-wrapper {
-    width: 50%;
-    height: 520px;
-    overflow: hidden;
-    position: relative;
-}
-
-.details-img-wrapper img {
-    width: 100%;
+.details-image img {
+    width: 420px;
     height: 100%;
     object-fit: cover;
-    transition: 0.5s ease;
-}
-
-.details-img-wrapper:hover img {
-    transform: scale(1.08);
-}
-
-.details-img-wrapper::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.22), transparent);
 }
 
 .details-info {
-    width: 50%;
-    padding: 48px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.details-info h2 {
-    font-size: 32px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: #0f172a;
-    letter-spacing: -0.9px;
+    flex: 1;
+    padding: 40px;
 }
 
 .details-price {
-    font-size: 21px;
+    font-size: 28px;
     font-weight: 600;
     color: #2563eb;
-    padding: 8px 16px;
-    border-radius: 16px;
-    display: inline-block;
-    background: rgba(37, 99, 235, 0.12);
-    margin-bottom: 18px;
 }
 
-.details-desc {
-    font-size: 15px;
-    font-weight: 400;
-    color: #475569;
-    line-height: 1.75;
-    margin-bottom: 24px;
-}
-
-.details-seller-row {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 16px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(14px);
-    margin-bottom: 22px;
-}
-
-.details-seller {
-    font-size: 14px;
+.details-title {
+    margin-top: 10px;
+    font-size: 18px;
     font-weight: 500;
-    color: #475569;
-}
-
-.view-profile-btn {
-    padding: 9px 16px;
-    border-radius: 999px;
-    border: none;
-    background: rgba(37, 99, 235, 0.14);
-    color: #2563eb;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
-
-.view-profile-btn:hover {
-    background: #2563eb;
-    color: white;
-    transform: scale(1.05);
-}
-
-.contact-btn {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 20px;
-    background: linear-gradient(to right, #2563eb, #3b82f6);
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow: 0px 10px 25px rgba(37, 99, 235, 0.25);
-}
-
-.contact-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 16px 35px rgba(37, 99, 235, 0.35);
-}
-
-.owner-actions {
-    display: flex;
-    gap: 14px;
-    margin-top: 20px;
-    width: 100%;
-}
-
-.edit-btn,
-.delete-btn {
-    flex: 1;
-    padding: 15px;
-    border: none;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
-
-.edit-btn {
-    background: linear-gradient(to right, #2563eb, #60a5fa);
-    color: white;
-}
-
-.delete-btn {
-    background: linear-gradient(to right, #f97316, #fb923c);
-    color: white;
-}
-
-.edit-btn:hover,
-.delete-btn:hover {
-    transform: translateY(-3px);
-}
-
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.55);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 200;
-}
-
-.modal-box {
-    width: 100%;
-    max-width: 460px;
-    padding: 34px;
-    border-radius: 26px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0px 18px 55px rgba(0, 0, 0, 0.28);
-}
-
-.modal-box h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 18px;
     color: #0f172a;
 }
 
-.modal-box input,
-.modal-box textarea,
-.modal-box select {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 14px;
-    border-radius: 16px;
-    border: none;
+.details-seller {
+    margin-top: 20px;
     font-size: 14px;
-    outline: none;
-    font-weight: 400;
-    background: rgba(255, 255, 255, 0.85);
+    color: #64748b;
 }
 
-.modal-box textarea {
-    resize: none;
-    height: 95px;
-}
-
-.modal-actions {
+.details-actions {
+    margin-top: 35px;
     display: flex;
-    gap: 14px;
-    margin-top: 12px;
+    gap: 16px;
 }
 
-.cancel-btn {
+.apple-btn {
     flex: 1;
     padding: 14px;
     border-radius: 18px;
     border: none;
-    background: rgba(148, 163, 184, 0.25);
     font-weight: 600;
     cursor: pointer;
+    transition: 0.25s ease;
 }
 
-.save-btn {
-    flex: 1;
-    padding: 14px;
-    border-radius: 18px;
-    border: none;
-    background: linear-gradient(to right, #2563eb, #3b82f6);
+.apple-btn.primary {
+    background: rgba(37, 99, 235, 0.92);
     color: white;
-    font-weight: 600;
-    cursor: pointer;
+    box-shadow: 0px 12px 22px rgba(37, 99, 235, 0.18);
 }
 
-.save-btn:hover {
+.apple-btn.primary:hover {
     transform: translateY(-2px);
 }
 
-@media (max-width: 850px) {
-    .details-card {
-        flex-direction: column;
-    }
+.apple-btn.danger {
+    background: rgba(15, 23, 42, 0.08);
+    color: rgba(15, 23, 42, 0.8);
+}
 
-    .details-img-wrapper,
-    .details-info {
-        width: 100%;
-    }
+.apple-btn.danger:hover {
+    background: rgba(15, 23, 42, 0.14);
+}
 
-    .details-img-wrapper {
-        height: 320px;
-    }
+.apple-btn.small {
+    flex: unset;
+    width: auto;
+    padding: 12px 18px;
+    font-size: 13px;
+    border-radius: 14px;
+    box-shadow: 0px 8px 16px rgba(37, 99, 235, 0.15);
+}
 
-    .details-info {
-        padding: 28px;
-    }
+.recommended-section {
+    margin-top: 65px;
+}
 
-    .owner-actions {
-        flex-direction: column;
-    }
+.recommended-section h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 18px;
+    letter-spacing: -0.4px;
+}
+
+.recommended-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 20px;
+}
+
+.recommended-card {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(18px);
+
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+
+    transition: 0.25s ease;
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.06);
+}
+
+.recommended-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0px 18px 35px rgba(0, 0, 0, 0.1);
+}
+
+.recommended-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+.rec-info {
+    padding: 14px;
+}
+
+.rec-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+
+.rec-price {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2563eb;
 }

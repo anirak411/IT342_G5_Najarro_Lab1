@@ -267,3 +267,17 @@
     font-size: 13px;
     color: #64748b;
 }
+
+.profile-display {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.profile-fullname {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 6px;
+    color: rgba(0, 0, 0, 0.55);
+}
+

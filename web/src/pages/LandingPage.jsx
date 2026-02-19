@@ -17,8 +17,8 @@ function LandingPage() {
         try {
             const response = await axios.get("http://localhost:8080/api/items");
             setItems(response.data);
-        } catch (error) {
-            console.error("Error fetching items:", error);
+        } catch {
+            console.log("Failed to fetch items");
         }
     };
 
@@ -29,14 +29,22 @@ function LandingPage() {
     return (
         <div className="marketplace-page">
             <header className="marketplace-header">
-                <h2 className="brand-name">TradeOff</h2>
+                <h2
+                    className="brand-name"
+                    onClick={() => navigate("/")}
+                >
+                    TradeOff
+                </h2>
 
                 <div className="search-box">
                     <input placeholder="Search items on campus..." />
                 </div>
 
                 <div className="header-links">
-                    <button className="header-btn" onClick={() => navigate("/login")}>
+                    <button
+                        className="header-btn"
+                        onClick={() => navigate("/login")}
+                    >
                         Sign In
                     </button>
 
@@ -51,9 +59,9 @@ function LandingPage() {
 
             <main className="marketplace-main">
                 <section className="marketplace-banner">
-                    <h1>Campus Marketplace Preview</h1>
+                    <h1>TradeOff Marketplace</h1>
                     <p>
-                        Browse real student listings. Login to view full details and start
+                        Browse affordable listings. Login to view full details and start
                         trading.
                     </p>
                 </section>
@@ -64,22 +72,36 @@ function LandingPage() {
                     ) : (
                         items.slice(0, 8).map((item) => (
                             <div
-                                key={item.itemid}
+                                key={item.id || item.itemid}
                                 className="item-card"
                                 onClick={handleItemClick}
                             >
                                 <img
                                     src={item.imageUrl}
-                                    alt={item.itemName}
+                                    alt={item.itemName || item.title}
                                     onError={(e) =>
-                                        (e.target.src = "/images/landing-placeholder.png")
+                                        (e.target.src =
+                                            "/images/landing-placeholder.png")
                                     }
                                 />
 
                                 <div className="item-info">
-                                    <h3>{item.itemName}</h3>
-                                    <p className="price">₱{item.price}</p>
-                                    <p className="preview-text">Preview only • Login to view</p>
+                                    <h3>{item.itemName || item.title}</h3>
+
+                                    <p className="price">
+                                        ₱
+                                        {Number(item.price).toLocaleString(
+                                            "en-PH",
+                                            {
+                                                minimumFractionDigits: 2,
+                                                maximumFractionDigits: 2,
+                                            }
+                                        )}
+                                    </p>
+
+                                    <p className="preview-text">
+                                        Preview only • Login to view
+                                    </p>
                                 </div>
                             </div>
                         ))
@@ -91,7 +113,11 @@ function LandingPage() {
                 <div className="modal-overlay">
                     <div className="modal-box">
                         <h2>Login Required</h2>
-                        <p>You need an account to view full item details and message sellers.</p>
+
+                        <p>
+                            You need an account to view full item details and message
+                            sellers.
+                        </p>
 
                         <div className="modal-actions">
                             <button

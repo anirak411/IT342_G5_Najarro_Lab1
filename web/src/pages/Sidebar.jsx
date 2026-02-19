@@ -2,68 +2,41 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/sidebar.css";
 
-function Sidebar({ isOpen, onClose }) {
+function Sidebar({ isOpen, onToggle }) {
     const navigate = useNavigate();
 
+    const goTo = (path) => {
+        navigate(path);
+        onToggle();
+    };
+
     const handleLogout = () => {
-        localStorage.removeItem("user");
+        localStorage.removeItem("email");
         navigate("/login");
     };
 
     return (
-        <>
-            {isOpen && <div className="sidebar-overlay" onClick={onClose}></div>}
+        <div className={`sidebar ${isOpen ? "open" : ""}`}>
+            <h2 className="sidebar-logo" onClick={() => goTo("/dashboard")}>
+                TradeOff
+            </h2>
 
-            <div className={`sidebar ${isOpen ? "open" : ""}`}>
-                <h2 className="sidebar-logo" onClick={() => navigate("/dashboard")}>
-                    TradeOff
-                </h2>
+            <nav className="sidebar-links">
+                <button onClick={() => goTo("/dashboard")}>Marketplace</button>
 
-                <nav className="sidebar-links">
-                    <button
-                        onClick={() => {
-                            navigate("/dashboard");
-                            onClose();
-                        }}
-                    >
-                        Marketplace
-                    </button>
+                <button onClick={() => goTo("/my-items")}>My Listings</button>
 
-                    <button
-                        onClick={() => {
-                            navigate("/my-items");
-                            onClose();
-                        }}
-                    >
-                        My Listings
-                    </button>
+                <button onClick={() => goTo("/profile")}>Profile</button>
 
-                    <button
-                        onClick={() => {
-                            navigate("/profile");
-                            onClose();
-                        }}
-                    >
-                        Profile
-                    </button>
+                <button onClick={() => goTo("/settings")}>Settings</button>
+            </nav>
 
-                    <button
-                        onClick={() => {
-                            navigate("/settings");
-                            onClose();
-                        }}
-                    >
-                        Settings
-                    </button>
-                </nav>
-
-                <div className="sidebar-footer">
-                    <button className="logout-btn" onClick={handleLogout}>
-                        Logout
-                    </button>
-                </div>
+            <div className="sidebar-footer">
+                <button className="logout-btn" onClick={handleLogout}>
+                    Logout
+                </button>
             </div>
-        </>
+        </div>
     );
 }
 

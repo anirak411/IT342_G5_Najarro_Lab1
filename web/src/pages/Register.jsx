@@ -5,8 +5,10 @@ import "../css/global.css";
 
 function Register() {
     const [fullName, setFullName] = useState("");
+    const [displayName, setDisplayName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
@@ -15,14 +17,20 @@ function Register() {
         try {
             await axios.post("http://localhost:8080/api/auth/register", {
                 fullName,
+                displayName,
                 email,
                 password,
             });
 
             alert("Account created successfully!");
             navigate("/login");
-        } catch {
-            alert("Registration failed.");
+        } catch (err) {
+            const msg =
+                err.response?.data?.message ||
+                err.response?.data ||
+                "Registration failed.";
+
+            alert(msg);
         }
     };
 
@@ -45,6 +53,15 @@ function Register() {
                             placeholder="Full Name"
                             value={fullName}
                             onChange={(e) => setFullName(e.target.value)}
+                            required
+                        />
+
+                        <input
+                            className="auth-input"
+                            type="text"
+                            placeholder="Display Name (Username)"
+                            value={displayName}
+                            onChange={(e) => setDisplayName(e.target.value)}
                             required
                         />
 

@@ -6,60 +6,86 @@ import "../css/profile.css";
 function Profile() {
     const navigate = useNavigate();
 
-    const email = localStorage.getItem("email") || "";
-
-    const [fullName, setFullName] = useState(
-        localStorage.getItem("user") || "User"
-    );
-
-    const [profilePic, setProfilePic] = useState(
-        localStorage.getItem("profilePic") || ""
-    );
-
-    const [coverPic, setCoverPic] = useState(
-        localStorage.getItem("coverPic") || ""
-    );
-
+    const [user, setUser] = useState(null);
+    const [profilePic, setProfilePic] = useState("");
+    const [coverPic, setCoverPic] = useState("");
     const [listings, setListings] = useState([]);
 
     useEffect(() => {
+        let storedUser = null;
+
+        try {
+            storedUser = JSON.parse(localStorage.getItem("user"));
+        } catch {
+            localStorage.removeItem("user");
+        }
+
+        if (!storedUser) {
+            navigate("/login");
+            return;
+        }
+
+        setUser(storedUser);
+
+        const profileKey = `profilePic_${storedUser.displayName}`;
+        const coverKey = `coverPic_${storedUser.displayName}`;
+
+        setProfilePic(localStorage.getItem(profileKey) || "");
+        setCoverPic(localStorage.getItem(coverKey) || "");
+    }, [navigate]);
+
+    useEffect(() => {
+        if (!user) return;
+
         const fetchListings = async () => {
             try {
                 const res = await axios.get("http://localhost:8080/api/items");
 
-                const myItems = res.data.filter(
-                    (item) => item.sellerEmail === email
-                );
+                const myItems = res.data.filter((item) => {
+                    return (
+                        item.sellerName === user.displayName ||
+                        item.seller === user.displayName ||
+                        item.username === user.username ||
+                        item.userId === user.id
+                    );
+                });
 
                 setListings(myItems);
-            } catch {
-                console.log("Failed to load listings");
+            } catch (err) {
+                console.log("Failed to load listings:", err);
             }
         };
 
         fetchListings();
-    }, [email]);
+    }, [user]);
 
     const uploadImage = (e, type) => {
+        if (!user) return;
+
         const file = e.target.files[0];
         if (!file) return;
 
         const reader = new FileReader();
 
         reader.onloadend = () => {
+            const profileKey = `profilePic_${user.displayName}`;
+            const coverKey = `coverPic_${user.displayName}`;
+
             if (type === "profile") {
-                localStorage.setItem("profilePic", reader.result);
+                localStorage.setItem(profileKey, reader.result);
                 setProfilePic(reader.result);
             }
 
             if (type === "cover") {
-                localStorage.setItem("coverPic", reader.result);
+                localStorage.setItem(coverKey, reader.result);
                 setCoverPic(reader.result);
             }
         };
 
         reader.readAsDataURL(file);
     };
+
+    if (!user) return null;
 
     return (
         <div className="profile-page">
@@ -88,9 +114,15 @@ function Profile() {
             <div className="profile-card">
                 <div className="profile-avatar-box">
                     {profilePic ? (
-                        <img src={profilePic} alt="Profile" className="profile-avatar-img" />
+                        <img
+                            src={profilePic}
+                            alt="Profile"
+                            className="profile-avatar-img"
+                        />
                     ) : (
-                        <div className="profile-avatar">{fullName.charAt(0)}</div>
+                        <div className="profile-avatar">
+                            {user.displayName.charAt(0).toUpperCase()}
+                        </div>
                     )}
 
                     <label className="avatar-upload">
@@ -104,16 +136,8 @@ function Profile() {
                 </div>
 
                 <div className="profile-details">
-                    <input
-                        className="name-edit"
-                        value={fullName}
-                        onChange={(e) => {
-                            setFullName(e.target.value);
-                            localStorage.setItem("user", e.target.value);
-                        }}
-                    />
-
-                    <p>{email}</p>
+                    <h2 className="profile-display">{user.displayName}</h2>
+                    <p className="profile-fullname">{user.fullName}</p>
                 </div>
             </div>
 
@@ -133,14 +157,20 @@ function Profile() {
                                 className="listing-card"
                                 onClick={() => navigate(`/item/${item.id}`)}
                             >
-                                <img src={item.imageUrl} alt={item.title} />
+                                <img
+                                    src={item.imageUrl}
+                                    alt={item.title}
+                                    className="listing-img"
+                                />
 
                                 <div className="listing-info">
                                     <h4>{item.title}</h4>
                                     <p className="listing-price">
                                         ₱{Number(item.price).toFixed(2)}
                                     </p>
-                                    <p className="listing-category">{item.category}</p>
+                                    <p className="listing-category">
+                                        {item.category}
+                                    </p>
                                 </div>
                             </div>
                         ))}

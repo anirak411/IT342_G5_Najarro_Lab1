@@ -1,9 +1,9 @@
 package com.example.tradeoff.ui.theme
 
-import androidx.compose.foundation.text.KeyboardOptions
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -23,6 +23,7 @@ fun RegisterScreen(
     onBackLanding: () -> Unit
 ) {
     var fullName by remember { mutableStateOf("") }
+    var displayName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -52,8 +53,16 @@ fun RegisterScreen(
             value = fullName,
             onValueChange = { fullName = it },
             label = { Text("Full Name") },
-            modifier = Modifier.fillMaxWidth(),
-            shape = MaterialTheme.shapes.large
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(15.dp))
+
+        OutlinedTextField(
+            value = displayName,
+            onValueChange = { displayName = it },
+            label = { Text("Display Name (Username)") },
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(15.dp))
@@ -63,7 +72,9 @@ fun RegisterScreen(
             onValueChange = { email = it },
             label = { Text("Email") },
             modifier = Modifier.fillMaxWidth(),
-            shape = MaterialTheme.shapes.large
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email
+            )
         )
 
         Spacer(modifier = Modifier.height(15.dp))
@@ -73,7 +84,6 @@ fun RegisterScreen(
             onValueChange = { password = it },
             label = { Text("Password") },
             modifier = Modifier.fillMaxWidth(),
-            shape = MaterialTheme.shapes.large,
             visualTransformation = if (passwordVisible)
                 VisualTransformation.None
             else
@@ -99,22 +109,34 @@ fun RegisterScreen(
         Button(
             onClick = {
                 scope.launch {
-                    val response = RetrofitClient.api.register(
-                        AuthRequest(email, password)
-                    )
+                    try {
+                        val response = RetrofitClient.api.register(
+                            AuthRequest(
+                                fullName = fullName,
+                                displayName = displayName,
+                                email = email,
+                                password = password
+                            )
+                        )
 
-                    if (response.isSuccessful && response.body()!!.success) {
-                        Toast.makeText(context, "Registered!", Toast.LENGTH_SHORT).show()
-                        onRegisterSuccess()
-                    } else {
-                        Toast.makeText(context, "Register Failed", Toast.LENGTH_SHORT).show()
+                        if (response.isSuccessful && response.body()?.success == true) {
+                            Toast.makeText(context, "Registered Successfully!", Toast.LENGTH_SHORT).show()
+                            onRegisterSuccess()
+                        } else {
+                            Toast.makeText(
+                                context,
+                                response.body()?.message ?: "Register Failed",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    } catch (e: Exception) {
+                        Toast.makeText(context, "Server Error", Toast.LENGTH_SHORT).show()
                     }
                 }
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp),
-            shape = MaterialTheme.shapes.large
+                .height(50.dp)
         ) {
             Text("Create Account")
         }

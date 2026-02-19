@@ -18,7 +18,22 @@ function Login() {
             });
 
             if (res.data.success) {
-                localStorage.setItem("user", res.data.fullName);
+                const cleanUser = {
+                    fullName: res.data.data.fullName,
+                    displayName: res.data.data.displayName,
+                    email: res.data.data.email,
+                };
+
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify({
+                        displayName: res.data.data.displayName,
+                        fullName: res.data.data.fullName,
+                        email: res.data.data.email,
+                    })
+                );
+
+
                 navigate("/dashboard");
             } else {
                 alert(res.data.message);
