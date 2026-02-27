@@ -18,12 +18,6 @@ function Login() {
             });
 
             if (res.data.success) {
-                const cleanUser = {
-                    fullName: res.data.data.fullName,
-                    displayName: res.data.data.displayName,
-                    email: res.data.data.email,
-                };
-
                 localStorage.setItem(
                     "user",
                     JSON.stringify({
@@ -32,18 +26,20 @@ function Login() {
                         email: res.data.data.email,
                         profilePicUrl: res.data.data.profilePicUrl || "",
                         coverPicUrl: res.data.data.coverPicUrl || "",
+                        role: res.data.data.role || "USER",
                     })
                 );
-                    localStorage.setItem("displayName", res.data.data.displayName);
+                localStorage.setItem("displayName", res.data.data.displayName);
                 localStorage.setItem("fullName", res.data.data.fullName);
                 localStorage.setItem("email", res.data.data.email);
+                localStorage.setItem("role", res.data.data.role || "USER");
 
 
                 navigate("/dashboard");
             } else {
                 alert(res.data.message);
             }
-        } catch (err) {
+        } catch {
             alert("Login failed.");
         }
     };

@@ -24,7 +24,7 @@ public class Item {
     private String sellerEmail;
 
     @Lob
-    @Column(name = "image_url", columnDefinition = "LONGTEXT")
+    @Column(name = "image_url", columnDefinition = "TEXT")
     private String imageUrl;
 
     private LocalDateTime createdAt;

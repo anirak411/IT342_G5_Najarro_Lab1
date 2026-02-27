@@ -40,6 +40,10 @@ function Dashboard() {
                 localStorage.getItem("email") ||
                 "",
             profilePicUrl: parsedUser?.profilePicUrl || "",
+            role:
+                parsedUser?.role ||
+                localStorage.getItem("role") ||
+                "USER",
         };
     };
 
@@ -77,8 +81,15 @@ function Dashboard() {
         location: "",
         images: [],
     });
+    const getApiErrorMessage = (error, fallback) => {
+        const data = error?.response?.data;
+        if (!data) return fallback;
+        if (typeof data === "string") return data;
+        return data.detail || data.message || fallback;
+    };
 
     const dropdownRef = useRef(null);
+    const listingsRef = useRef(null);
 
     useEffect(() => {
         fetchItems();
@@ -375,6 +386,30 @@ function Dashboard() {
         closeListingModal();
     };
 
+    const handleStartEscrowFromModal = async () => {
+        if (!selectedItem) return;
+        if (!currentUser.email) {
+            alert("Please log in first.");
+            navigate("/login");
+            return;
+        }
+
+        try {
+            await axios.post("http://localhost:8080/api/transactions", {
+                itemId: selectedItem.id,
+                buyerEmail: currentUser.email,
+                buyerName: currentUser.displayName || currentUser.email,
+            });
+            closeListingModal();
+            if (window.confirm("Secure purchase started. Open Transactions page now?")) {
+                navigate("/transactions");
+            }
+        } catch (err) {
+            const msg = getApiErrorMessage(err, "Could not start secure purchase.");
+            alert(msg);
+        }
+    };
+
     const clearNotifications = () => {
         setChatUnreadCount(0);
         setChatUnreadPreview([]);
@@ -387,6 +422,10 @@ function Dashboard() {
             );
         }
         window.dispatchEvent(new Event("chatUnreadUpdated"));
+    };
+
+    const jumpToListings = () => {
+        listingsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     };
 
     return (
@@ -501,6 +540,7 @@ function Dashboard() {
                                         localStorage.removeItem("displayName");
                                         localStorage.removeItem("fullName");
                                         localStorage.removeItem("email");
+                                        localStorage.removeItem("role");
                                         navigate("/login");
                                     }}
                                 >
@@ -533,7 +573,7 @@ function Dashboard() {
                                         }
                                     />
 
-                                    <button className="search-btn">
+                                    <button className="search-btn" onClick={jumpToListings}>
                                         ➜
                                     </button>
                                 </div>
@@ -576,7 +616,7 @@ function Dashboard() {
                             </div>
                         </section>
 
-                        <section className="recent-section">
+                        <section className="recent-section" ref={listingsRef}>
                             <h2>Listed Recently</h2>
 
                             <div className="listing-row">
@@ -705,12 +745,20 @@ function Dashboard() {
                                     </button>
                                 </div>
                             ) : (
-                                <button
-                                    className="post-btn modal-actions"
-                                    onClick={handleMessageSellerFromModal}
-                                >
-                                    Message Seller
-                                </button>
+                                <div className="modal-actions owner-actions">
+                                    <button
+                                        className="post-btn"
+                                        onClick={handleMessageSellerFromModal}
+                                    >
+                                        Message Seller
+                                    </button>
+                                    <button
+                                        className="owner-delete-btn"
+                                        onClick={handleStartEscrowFromModal}
+                                    >
+                                        Secure This Purchase
+                                    </button>
+                                </div>
                             )}
                         </div>
 

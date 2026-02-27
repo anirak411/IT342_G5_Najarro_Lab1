@@ -1,0 +1,28 @@
+<resources>
+    <string-array name="listing_categories_with_all">
+        <item>All</item>
+        <item>Electronics</item>
+        <item>Clothing</item>
+        <item>Books</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="listing_categories">
+        <item>Electronics</item>
+        <item>Clothing</item>
+        <item>Books</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="listing_conditions">
+        <item>Used</item>
+        <item>Like New</item>
+        <item>Brand New</item>
+    </string-array>
+
+    <string-array name="listing_sort_options">
+        <item>Newest</item>
+        <item>Price: Low to High</item>
+        <item>Price: High to Low</item>
+    </string-array>
+</resources>

@@ -22,12 +22,16 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private UserRole role = UserRole.USER;
+
     @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String profilePicUrl;
 
     @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String coverPicUrl;
 
     public User() {}
@@ -73,5 +77,13 @@ public class User {
 
     public void setCoverPicUrl(String coverPicUrl) {
         this.coverPicUrl = coverPicUrl;
+    }
+
+    public UserRole getRole() {
+        return role == null ? UserRole.USER : role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role == null ? UserRole.USER : role;
     }
 }

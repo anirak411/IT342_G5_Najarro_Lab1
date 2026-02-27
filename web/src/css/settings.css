@@ -54,8 +54,30 @@
     font-size: 14px;
 }
 
+.settings-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.settings-logout {
+    margin-top: 18px;
+    display: flex;
+    justify-content: flex-end;
+}
+
 @media (max-width: 640px) {
     .settings-back-btn {
         left: 60px;
+    }
+
+    .settings-logout {
+        justify-content: stretch;
+    }
+
+    .settings-logout .apple-btn {
+        width: 100%;
     }
 }

@@ -4,6 +4,13 @@ import "../css/sidebar.css";
 
 function Sidebar({ isOpen, onToggle }) {
     const navigate = useNavigate();
+    let storedUser = null;
+    try {
+        storedUser = JSON.parse(localStorage.getItem("user"));
+    } catch {
+        storedUser = null;
+    }
+    const role = (storedUser?.role || "").toUpperCase();
 
     const goTo = (path) => {
         navigate(path);
@@ -15,6 +22,7 @@ function Sidebar({ isOpen, onToggle }) {
         localStorage.removeItem("displayName");
         localStorage.removeItem("fullName");
         localStorage.removeItem("email");
+        localStorage.removeItem("role");
         navigate("/login");
         if (onToggle) onToggle();
     };
@@ -50,6 +58,16 @@ function Sidebar({ isOpen, onToggle }) {
                 <button onClick={() => goTo("/settings")}>
                     Settings
                 </button>
+
+                <button onClick={() => goTo("/transactions")}>
+                    Transactions
+                </button>
+
+                {role === "ADMIN" && (
+                    <button onClick={() => goTo("/admin")}>
+                        Admin Panel
+                    </button>
+                )}
             </nav>
 
             <div className="sidebar-footer">

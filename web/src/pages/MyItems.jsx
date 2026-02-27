@@ -39,10 +39,16 @@ function MyItems() {
 
         const fetchItems = async () => {
             try {
-                const res = await axios.get("http://localhost:8080/api/items");
-                const mine = res.data.filter((item) =>
-                    isItemOwnedByUser(item, user)
-                );
+                const res = await axios.get("http://localhost:8080/api/items/seller", {
+                    params: {
+                        email: currentEmail || undefined,
+                        name: currentName || undefined,
+                    },
+                });
+
+                const mine = Array.isArray(res.data)
+                    ? res.data.filter((item) => isItemOwnedByUser(item, user))
+                    : [];
                 setItems(mine);
             } catch (err) {
                 console.log("Failed to load my listings", err);

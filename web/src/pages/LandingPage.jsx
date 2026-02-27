@@ -9,11 +9,9 @@ function LandingPage() {
     const navigate = useNavigate();
 
     const [items, setItems] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
     const [showModal, setShowModal] = useState(false);
-
-    useEffect(() => {
-        fetchItems();
-    }, []);
+    const [selectedItemTitle, setSelectedItemTitle] = useState("");
 
     const fetchItems = async () => {
         try {
@@ -24,9 +22,32 @@ function LandingPage() {
         }
     };
 
-    const handleItemClick = () => {
+    useEffect(() => {
+        fetchItems();
+    }, []);
+
+    const handleItemClick = (title) => {
+        setSelectedItemTitle(title || "this listing");
         setShowModal(true);
     };
+
+    const filteredItems = items.filter((item) => {
+        const term = searchTerm.trim().toLowerCase();
+        if (!term) return true;
+        const searchable = [
+            item.itemName,
+            item.title,
+            item.category,
+            item.condition,
+            item.location,
+            item.sellerName,
+            String(item.price || ""),
+        ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+        return searchable.includes(term);
+    });
 
     return (
         <div className="marketplace-page">
@@ -39,7 +60,11 @@ function LandingPage() {
                 </h2>
 
                 <div className="search-box">
-                    <input placeholder="Search items on campus..." />
+                    <input
+                        placeholder="Search items on campus..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
                 </div>
 
                 <div className="header-links">
@@ -69,14 +94,14 @@ function LandingPage() {
                 </section>
 
                 <section className="items-grid">
-                    {items.length === 0 ? (
+                    {filteredItems.length === 0 ? (
                         <p className="empty-msg">No listings available yet.</p>
                     ) : (
-                        items.slice(0, 8).map((item) => (
+                        filteredItems.slice(0, 8).map((item) => (
                             <div
                                 key={item.id || item.itemid}
                                 className="item-card"
-                                onClick={handleItemClick}
+                                onClick={() => handleItemClick(item.itemName || item.title)}
                             >
                                 <img
                                     src={getPrimaryImage(item)}
@@ -118,7 +143,7 @@ function LandingPage() {
 
                         <p>
                             You need an account to view full item details and message
-                            sellers.
+                            sellers for "{selectedItemTitle}".
                         </p>
 
                         <div className="modal-actions">

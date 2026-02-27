@@ -12,6 +12,8 @@ import SellerProfile from "./pages/SellerProfile.jsx";
 import ChatWidget from "./pages/ChatWidget.jsx";
 import MyItems from "./pages/MyItems.jsx";
 import Sidebar from "./pages/Sidebar.jsx";
+import Transactions from "./pages/Transactions.jsx";
+import AdminPanel from "./pages/AdminPanel.jsx";
 
 function App() {
     const location = useLocation();
@@ -41,6 +43,8 @@ function App() {
                 <Route path="/seller/:sellerName" element={<SellerProfile />} />
 
                 <Route path="/settings" element={<Settings />} />
+                <Route path="/transactions" element={<Transactions />} />
+                <Route path="/admin" element={<AdminPanel />} />
             </Routes>
 
             {showUniversalSidebar && (

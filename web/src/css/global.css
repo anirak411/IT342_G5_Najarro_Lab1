@@ -68,6 +68,14 @@
     gap: 14px;
 }
 
+.auth-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #475569;
+}
+
 .auth-input {
     padding: 14px 16px;
     border-radius: 16px;

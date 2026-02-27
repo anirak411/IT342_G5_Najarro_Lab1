@@ -1,0 +1,17 @@
+spring.application.name=backend
+spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:postgresql://db.sxzdsgtjkfnzeedgbqhb.supabase.co:5432/postgres?sslmode=require}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME:postgres}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:}
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=false
+logging.level.org.hibernate.SQL=warn
+logging.level.org.hibernate.orm.jdbc.bind=warn
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+server.port=${PORT:8080}
+cloudinary.cloud_name=${CLOUDINARY_CLOUD_NAME:}
+cloudinary.api_key=${CLOUDINARY_API_KEY:}
+cloudinary.api_secret=${CLOUDINARY_API_SECRET:}
+spring.servlet.multipart.max-file-size=100MB
+spring.servlet.multipart.max-request-size=120MB
+server.tomcat.max-swallow-size=120MB

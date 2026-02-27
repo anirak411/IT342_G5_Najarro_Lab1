@@ -1,111 +1,85 @@
-# TradeOff App
+# TradeOff
 
-TradeOff is a multi-platform expense tracking and transaction management application developed as part of the IT342 course project.  
-The system consists of a web platform, a mobile application, and a backend REST API.
-
----
+TradeOff is a multi-platform preloved marketplace project for IT342 (System Integration and Architecture).  
+It includes a Spring Boot backend, a React web app, and an Android app.
 
 ## Project Overview
+TradeOff lets users:
+- Register and log in
+- Post, edit, browse, and delete listings
+- View seller information and listing details
+- Chat with other users
+- Manage profile media and user listings
 
-TradeOff helps users manage expenses, record transactions, and monitor spending through a unified system accessible via both web and mobile platforms.
+## Current Feature Status
+Implemented:
+- Authentication (register/login)
+- Listing CRUD with image upload
+- Marketplace browsing with search/filter/sort
+- Basic profile management
+- Web and mobile messaging
 
-The application is composed of three major components:
+Not yet implemented:
+- JWT auth and refresh token flow
+- Admin moderation panel
+- Escrow transaction workflow
+- Trade request and transaction history modules
 
-- Web Application (React)
-- Mobile Application (Android Kotlin)
-- Backend API (Java Spring Boot)
+## Tech Stack
+Backend:
+- Java 17
+- Spring Boot 3.x
+- Spring Data JPA
+- MySQL
+- Cloudinary (image storage)
 
----
+Web:
+- React + Vite
+- Axios
+- React Router
 
-## Features
-
-- User authentication and account management
-- Expense and transaction tracking
-- Cross-platform accessibility through web and mobile
-- Backend REST API integration
-- Organized repository structure for full-stack development
-
----
-
-## Technology Stack
-
-### Backend
-- Java (Spring Boot)
-- REST API
-- Maven or Gradle
-
-### Web Application
-- React.js
-- JavaScript
-- Axios for API requests
-
-### Mobile Application
-- Kotlin
-- Android Studio
-- Retrofit for API integration
-
----
+Mobile:
+- Kotlin (Android, minSdk 24)
+- Retrofit
+- RecyclerView + Coil
 
 ## Repository Structure
-
----
+- `backend/` - Spring Boot API
+- `web/` - React web application
+- `mobile/` - Android application
+- `docs/` - project documents and references
 
 ## Setup Instructions
 
-### 1. Clone the Repository
-
+1. Clone:
 ```bash
 git clone https://github.com/anirak411/IT342_G5_Najarro_Lab1
 cd IT342_G5_Najarro_Lab1
-````
-Backend Setup (Java)
-1. Open the backend/ folder using IntelliJ IDEA or another Java IDE
-2. Install dependencies:
+```
 
-````
+2. Backend:
+```bash
+cd backend
 mvn clean install
-````
-3. Run the backend server:
-````
 mvn spring-boot:run
-````
-The backend will run at:
-````
-http://localhost:8080
-````
-## Web Application Setup (React)
-Navigate to the web folder:
-````
+```
+Backend runs on `http://localhost:8080`.
+
+3. Web:
+```bash
 cd web
-````
-Install required packages:
-````
 npm install
-````
-Start the React development server:
-````
-npm start
-````
-The web application will run at:
-````
-http://localhost:3000
-````
----
+npm run dev
+```
+Web app runs on Vite's default local port.
 
-### Mobile Application Setup (Android Kotlin)
-1. Open the mobile/ folder in Android Studio
-2. Sync Gradle files
-3. Run the application using an emulator or physical Android device
+4. Mobile:
+- Open `mobile/` in Android Studio
+- Sync Gradle
+- Run on emulator/device
 
-Ensure that the backend server is running for API connectivity.
+Ensure backend is running before testing web/mobile API features.
 
----
-
-### Git Ignore Notes
-Unnecessary system and IDE files such as .idea/ and .DS_Store are excluded from version control using the .gitignore file.
-
----
-
-### Contributors
-IT342 - G5 
-Project Members: Monica A. Najarro
+## Contributors
+IT342 - G5  
+Monica A. Najarro

@@ -8,6 +8,7 @@ import { getListingAgeLabel } from "../utils/itemTime";
 
 function SellerProfile() {
     const { sellerName } = useParams();
+    const decodedSellerName = decodeURIComponent(sellerName || "");
     const navigate = useNavigate();
     const formatPrice = (value) =>
         Number(value || 0).toLocaleString("en-PH", {
@@ -23,7 +24,7 @@ function SellerProfile() {
                 const res = await axios.get("http://localhost:8080/api/items");
 
                 const sellerItems = res.data.filter(
-                    (item) => item.sellerName === sellerName
+                    (item) => item.sellerName === decodedSellerName
                 );
 
                 setListings(sellerItems);
@@ -33,18 +34,18 @@ function SellerProfile() {
         };
 
         fetchSellerListings();
-    }, [sellerName]);
+    }, [decodedSellerName]);
 
     return (
         <div className="profile-page">
             <header className="profile-navbar">
                 <BackButton fallback="/dashboard" />
 
-                <h2 className="profile-logo">{sellerName}'s Profile</h2>
+                <h2 className="profile-logo">{decodedSellerName}'s Profile</h2>
             </header>
 
             <section className="profile-content">
-                <h3>Listings by {sellerName}</h3>
+                <h3>Listings by {decodedSellerName}</h3>
 
                 {listings.length === 0 ? (
                     <p className="empty-text">No listings available.</p>

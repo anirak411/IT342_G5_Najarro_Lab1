@@ -1,5 +1,6 @@
 package com.it342.backend.controller;
 
+import com.it342.backend.dto.UserSummaryResponse;
 import com.it342.backend.model.User;
 import com.it342.backend.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
@@ -20,18 +21,22 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserSummaryResponse> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(this::toSummary)
+                .toList();
     }
 
     @GetMapping("/me")
-    public User getUserByEmail(@RequestParam String email) {
-        return userRepository.findByEmail(email)
+    public UserSummaryResponse getUserByEmail(@RequestParam String email) {
+        User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
+        return toSummary(user);
     }
 
     @PutMapping("/media")
-    public User updateUserMedia(@RequestBody Map<String, String> payload) {
+    public UserSummaryResponse updateUserMedia(@RequestBody Map<String, String> payload) {
         String email = payload.getOrDefault("email", "").trim();
         if (email.isBlank()) {
             throw new RuntimeException("Email is required");
@@ -52,6 +57,19 @@ public class UserController {
             user.setCoverPicUrl(payload.get("coverPicUrl"));
         }
 
-        return userRepository.save(user);
+        User saved = userRepository.save(user);
+        return toSummary(saved);
+    }
+
+    private UserSummaryResponse toSummary(User user) {
+        return new UserSummaryResponse(
+                user.getId(),
+                user.getDisplayName(),
+                user.getFullName(),
+                user.getEmail(),
+                user.getProfilePicUrl(),
+                user.getCoverPicUrl(),
+                user.getRole().name()
+        );
     }
 }

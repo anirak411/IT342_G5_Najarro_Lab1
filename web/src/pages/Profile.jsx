@@ -119,6 +119,19 @@ function Profile() {
                     localStorage.setItem(coverKey, backendCover);
                     setCoverPic(backendCover);
                 }
+
+                if (res.data?.role) {
+                    localStorage.setItem("role", res.data.role);
+                    localStorage.setItem(
+                        "user",
+                        JSON.stringify({
+                            ...user,
+                            profilePicUrl: backendProfile || profilePic,
+                            coverPicUrl: backendCover || coverPic,
+                            role: res.data.role,
+                        })
+                    );
+                }
             } catch {
                 // keep local fallback
             }
@@ -128,28 +141,30 @@ function Profile() {
 
         const fetchListings = async () => {
             try {
-                const res = await axios.get("http://localhost:8080/api/items");
-                const currentUserEmail = (
-                    user.email ||
-                    localStorage.getItem("email") ||
-                    ""
-                )
-                    .trim()
-                    .toLowerCase();
+                const currentUserEmail = (user.email || localStorage.getItem("email") || "").trim();
                 const currentDisplayName = (
                     user.displayName ||
                     localStorage.getItem("displayName") ||
                     user.fullName ||
                     localStorage.getItem("fullName") ||
                     ""
-                )
-                    .trim()
-                    .toLowerCase();
+                ).trim();
 
-                const myItems = res.data.filter((item) => {
-                    if (!currentUserEmail && !currentDisplayName) return false;
-                    return isItemOwnedByUser(item, user);
+                if (!currentUserEmail && !currentDisplayName) {
+                    setListings([]);
+                    return;
+                }
+
+                const res = await axios.get("http://localhost:8080/api/items/seller", {
+                    params: {
+                        email: currentUserEmail || undefined,
+                        name: currentDisplayName || undefined,
+                    },
                 });
+
+                const myItems = Array.isArray(res.data)
+                    ? res.data.filter((item) => isItemOwnedByUser(item, user))
+                    : [];
 
                 setListings(myItems);
             } catch (err) {

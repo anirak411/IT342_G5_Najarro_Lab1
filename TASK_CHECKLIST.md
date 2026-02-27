@@ -1,190 +1,165 @@
-#  TradeOff : IT342 Project Checklist
+# TradeOff: IT342 Project Checklist
 
-This TODO list tracks the development of the TradeOff multi-platform application
-(Spring Boot Backend + React Web + Android Mobile).
+Status snapshot date: 2026-02-27
+Scope: Spring Boot backend + React web + Android mobile
 
----
-
-## 🟦 EPIC 1: Repository & Project Setup
-
+## EPIC 1: Repository and Project Setup
 - [x] Create TradeOff GitHub repository
-- [x] Add main folder structure:
-    - [x] backend/
-    - [x] web/
-    - [x] mobile/
-    - [x] docs/
-- [x] Add .gitignore file
-- [x] Remove committed unnecessary files (.idea/, .DS_Store)
-- [x] Write README.md (setup + features + tech stack)
+- [x] Add main folder structure (`backend/`, `web/`, `mobile/`, `docs/`)
+- [x] Add `.gitignore` file
+- [x] Remove unnecessary files from version control (`.idea/`, `.DS_Store`)
+- [x] Write README with setup and tech stack
 
----
+## EPIC 2: User Accounts and Authentication
 
-## 🟦 EPIC 2: User Accounts & Authentication
-
-### Backend
-- [x] Create User entity (id, name, email, password)
+Backend
+- [x] Create `User` entity (`id`, `fullName`, `displayName`, `email`, `password`)
 - [x] Implement registration API
 - [x] Implement login API
-- [x] Encrypt passwords (Spring Security)
-- [x] Validate user input fields
+- [x] Encrypt passwords with bcrypt
+- [x] Validate duplicate email/display name
+- [ ] Implement JWT access/refresh tokens
+- [x] Implement logout endpoint
 
-### Web
+Web
 - [x] Build login page UI
 - [x] Build registration page UI
 - [x] Show authentication error messages
-- [x] Store user session/token
+- [x] Store user session locally
 
-### Mobile
-- [x] Create login screen (Kotlin)
+Mobile
+- [x] Create login screen
 - [x] Create registration screen
-- [x] Add password visibility toggle
-- [x] Implement back button navigation to landing page
+- [ ] Add password visibility toggle
+- [x] Implement back navigation to landing screen
 
----
+## EPIC 3: Marketplace Posting Feature
 
-## 🟦 EPIC 3: Marketplace Posting Feature
+User Stories
+- [x] As a user, I can post an item for trade/sale
+- [x] As a user, I can browse available listings
 
-### User Stories
-- [ ] As a user, I want to post an item so I can trade with others
-- [ ] As a user, I want to browse available trade offers
+Backend
+- [x] Create item entity (`title`, `description`, `price`, `category`, `condition`, `location`, image URLs, seller data)
+- [x] Link listings to owner (`sellerEmail` / `sellerName`)
+- [x] Create listing API
+- [x] View all listings API
+- [x] View listing by ID API
+- [x] Update listing API with ownership check
+- [x] Delete listing API with ownership check
+- [x] Add dedicated "view listings by user" endpoint
+- [x] Add dedicated backend search endpoint
 
-### Backend
-- [ ] Create Post entity (title, description, category, images)
-- [ ] Link posts to users
-- [ ] Implement APIs:
-    - [ ] Create post
-    - [ ] View all posts
-    - [ ] View posts by user
-    - [ ] Delete post
+Web
+- [x] Create marketplace feed page
+- [x] Create listing upload form
+- [x] Show user-owned listings in profile/my-items pages
+- [x] Add client-side search/filter/sort
 
-### Web
-- [ ] Create marketplace feed page
-- [ ] Create post upload form
-- [ ] Display only user-created posts in profile/dashboard
+Mobile
+- [x] Create marketplace screen
+- [x] Display listings in list/grid view
+- [x] Add listing creation screen/dialog
+- [x] Add listing edit/delete from owner flow
 
-### Mobile
-- [ ] Create marketplace screen
-- [ ] Display trade posts in list view
-- [ ] Add post creation screen
+## EPIC 4: Trade Request System
 
----
+User Stories
+- [ ] As a user, I can request a trade
+- [ ] As a user, I can accept or decline trade offers
 
-## 🟦 EPIC 4: Trade Request System
+Backend
+- [ ] Create `TradeRequest` entity (`sender`, `receiver`, `post`, `status`)
+- [ ] Implement send request API
+- [ ] Implement incoming requests API
+- [ ] Implement accept request API
+- [ ] Implement decline request API
 
-### User Stories
-- [ ] As a user, I want to request a trade so I can exchange items
-- [ ] As a user, I want to accept or decline trade offers
-
-### Backend
-- [ ] Create TradeRequest entity (sender, receiver, post, status)
-- [ ] Implement APIs:
-    - [ ] Send trade request
-    - [ ] View incoming requests
-    - [ ] Accept request
-    - [ ] Decline request
-
-### Web
-- [ ] Add trade request button on posts
+Web
+- [ ] Add trade request button on listing pages
 - [ ] Create trade requests page (pending/accepted/declined)
 
-### Mobile
-- [ ] Add trade request feature in post details
+Mobile
+- [ ] Add trade request feature in item details
 - [ ] Create requests inbox screen
 
----
+## EPIC 5: Messaging and Chat Feature
 
-## 🟦 EPIC 5: Messaging & Chat Feature
+User Stories
+- [x] As a user, I can chat with other users
+- [x] As a user, I can see an empty chat state
 
-### User Stories
-- [ ] As a user, I want to chat so I can negotiate trades
-- [ ] As a user, I want to see "No messages yet" if chat is empty
+Backend
+- [x] Create `ChatMessage` entity (`senderEmail`, `receiverEmail`, `content`, `createdAt`)
+- [x] Implement send message API
+- [x] Implement conversation history API
 
-### Backend
-- [ ] Create Message entity (sender, receiver, content, timestamp)
-- [ ] Implement APIs:
-    - [ ] Send message
-    - [ ] View conversation history
+Web
+- [x] Create floating chat UI
+- [x] Display empty chat/conversation states
 
-### Web
-- [ ] Create chat UI screen
-- [ ] Display empty chat state when no messages exist
+Mobile
+- [x] Create messaging screen/dialog
+- [x] Display messages in conversation format
 
-### Mobile
-- [ ] Create messaging screen
-- [ ] Display messages in conversation format
+## EPIC 6: User Profile Feature
 
----
+User Stories
+- [x] As a user, I have a profile page
+- [ ] As a user, I can view full trade activity history
 
-## 🟦 EPIC 6: User Profile Feature
+Backend
+- [x] Implement profile view API (`/api/users/me`)
+- [x] Implement profile media update API (`/api/users/media`)
+- [ ] Add profile update API for all editable fields
+- [ ] Add user trade history API
 
-### User Stories
-- [ ] As a user, I want a profile page to manage my account
-- [ ] As a user, I want to view my posts and trade activity
+Web
+- [x] Build profile page UI
+- [x] Show user listings
+- [ ] Show trade request/transaction history
 
-### Backend
-- [ ] Implement profile API (view/update info)
-- [ ] Fetch user-specific posts and trade history
+Mobile
+- [x] Create profile section
+- [x] Display user info and listing count
+- [x] Display user-owned listings in dashboard tab
 
-### Web
-- [ ] Build profile page UI
-- [ ] Show user posts list
-- [ ] Show trade request history
+## EPIC 7: Dashboard and Navigation
 
-### Mobile
-- [ ] Create profile screen
-- [ ] Display user info + posted items
+Web
+- [x] Create dashboard home
+- [x] Show marketplace highlights/listings
+- [x] Add sidebar/navigation and logout
 
----
+Mobile
+- [x] Build dashboard tabs (marketplace, my listings, profile, settings)
+- [x] Ensure navigation between screens/tabs works
+- [x] Add back navigation for auth screens
 
-## 🟦 EPIC 7: Dashboard & Navigation
+## EPIC 8: Integration and System Testing
+- [x] Connect React frontend to backend
+- [x] Connect Android app to backend with Retrofit
+- [ ] Verify consistent data across platforms with formal test cases
+- [ ] Test full workflow: Register -> Login -> Post Item -> Request Trade -> Chat -> Accept Trade
 
-### Web
-- [ ] Create dashboard homepage
-- [ ] Show marketplace highlights
-- [ ] Add navbar + logout
-
-### Mobile
-- [ ] Improve dashboard to match web version
-- [ ] Ensure smooth navigation between screens
-- [ ] Add proper back button behavior
-
----
-
-## 🟦 EPIC 8: Integration & System Testing
-
-- [ ] Connect React frontend to backend successfully
-- [ ] Connect Android app to backend using Retrofit
-- [ ] Verify consistent data across platforms
-- [ ] Test full workflow:
-    - [ ] Register → Login → Post Item → Request Trade → Chat → Accept Trade
-
----
-
-## 🟦 EPIC 9: Documentation & Final Submission
-
-- [ ] Update README with final project description
-- [ ] Add screenshots in docs/ folder
-- [ ] Write final SRS-aligned project report
+## EPIC 9: Documentation and Final Submission
+- [x] Add screenshots to `docs/`
+- [x] Create requirements compliance report (`docs/REQUIREMENTS_COMPLIANCE_REPORT.md`)
+- [x] Update README to final marketplace description and run instructions
+- [ ] Write final SRS/SDD-aligned report version
 - [ ] Prepare presentation slides/demo
 - [ ] Final code cleanup before submission
 
----
-
-## ✅ Final Submission Checklist
-
+## Final Submission Checklist
 - [ ] Confirm unnecessary files are ignored
 - [ ] Push final working version to GitHub
 - [ ] Tag release version (optional)
 - [ ] Submit repository link to instructor
 
----
-
-## ✅ Definition of Done
-
-A feature is complete when:
-
-- [ ] Backend API works correctly
-- [ ] Feature works on both web and mobile
-- [ ] UI shows proper empty/error states
-- [ ] Code is committed and pushed
-- [ ] Requirement matches the TradeOff SRS
+## Definition of Done
+A requirement is complete when:
+- [ ] Backend API behavior matches documented contract
+- [ ] Feature works on both web and mobile (if in scope)
+- [ ] UI includes loading, empty, and error states
+- [ ] Security/access controls are implemented where required
+- [ ] Requirement is traceable in SRS/SDD and checklist

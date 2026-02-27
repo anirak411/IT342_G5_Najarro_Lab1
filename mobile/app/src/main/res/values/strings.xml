@@ -1,3 +1,125 @@
 <resources>
     <string name="app_name">TradeOff</string>
+
+    <string name="landing_banner_title">TradeOff Marketplace</string>
+    <string name="landing_subtitle">Browse affordable listings. Sign in to view full item details and connect with sellers.</string>
+    <string name="featured_listings">Featured Listings</string>
+    <string name="recent_listings">Recent Listings</string>
+    <string name="dashboard_subtitle">Find what you need and trade with your campus community.</string>
+    <string name="menu_icon">M</string>
+
+    <string name="login_title">Welcome Back!</string>
+    <string name="login_subtitle">Sign in to explore listings, trade items, and connect with students.</string>
+    <string name="register_title">Create Account</string>
+
+    <string name="tab_marketplace">Marketplace</string>
+    <string name="tab_my_listings">My Listings</string>
+    <string name="tab_profile">Profile</string>
+    <string name="tab_settings">Settings</string>
+
+    <string name="action_back_to_marketplace">Back to Marketplace</string>
+    <string name="action_sign_in">Sign In</string>
+    <string name="action_register">Register</string>
+    <string name="action_create_account">Create Account</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_chat">Chat</string>
+    <string name="action_sell">Sell</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_close">Close</string>
+    <string name="action_message_seller">Message Seller</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_choose_image">Choose Image</string>
+    <string name="action_change_image">Change Image</string>
+    <string name="action_send">Send</string>
+    <string name="action_remove_image">Remove Image</string>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_full_name">Full Name</string>
+    <string name="hint_display_name">Display Name (Username)</string>
+    <string name="hint_search_items">Search items on campus...</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_price">Price</string>
+    <string name="hint_location">Location</string>
+    <string name="hint_type_message">Type a message</string>
+
+    <string name="login_success">Login successful.</string>
+    <string name="login_failed">Login failed.</string>
+    <string name="register_success">Registered successfully.</string>
+    <string name="register_failed">Registration failed.</string>
+    <string name="server_error">Server error.</string>
+    <string name="error_fill_login">Enter both email and password.</string>
+    <string name="error_fill_register">Fill in all registration fields.</string>
+
+    <string name="dashboard_welcome">Welcome, %1$s</string>
+    <string name="dashboard_loading">Loading listings...</string>
+    <string name="dashboard_error">Could not load listings.</string>
+    <string name="dashboard_empty">No listings yet.</string>
+    <string name="dashboard_no_results">No matching listings.</string>
+    <string name="my_listings_empty">You have no listings yet.</string>
+
+    <string name="landing_loading">Loading featured listings...</string>
+    <string name="landing_error">Could not load featured listings.</string>
+    <string name="landing_empty">No featured listings yet.</string>
+    <string name="landing_no_results">No matching listings.</string>
+
+    <string name="items_count_filtered">%1$d of %2$d listings</string>
+    <string name="profile_listing_count">Listings posted: %1$d</string>
+    <string name="profile_name_fallback">User</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_account">Account</string>
+    <string name="settings_account_desc">Manage account preferences.</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_notifications_desc">Configure message and listing notifications.</string>
+
+    <string name="sell_dialog_title">Sell Item</string>
+    <string name="edit_dialog_title">Edit Listing</string>
+    <string name="listing_details_title">Listing Details</string>
+    <string name="listing_meta_detail">%1$s | %2$s | %3$s</string>
+    <string name="listing_seller_label">Seller: %1$s</string>
+    <string name="listing_save_success">Listing saved successfully.</string>
+    <string name="listing_save_failed">Failed to save listing.</string>
+    <string name="listing_delete_success">Listing deleted.</string>
+    <string name="listing_delete_failed">Failed to delete listing.</string>
+    <string name="listing_delete_confirm">Delete this listing?</string>
+    <string name="listing_owner_only">Only the listing owner can do that.</string>
+    <string name="listing_pick_image_required">Please select an image.</string>
+    <string name="listing_form_required">Please complete all listing fields.</string>
+    <string name="listing_invalid_price">Please enter a valid price.</string>
+    <string name="image_selected_label">Image selected</string>
+    <string name="image_not_selected_label">No image selected</string>
+
+    <string name="chat_dialog_title">Chat with %1$s</string>
+    <string name="chat_no_messages">No messages yet.</string>
+    <string name="chat_no_contacts">No contacts available yet.</string>
+    <string name="chat_pick_contact">Pick a contact</string>
+    <string name="chat_send_error">Failed to send message.</string>
+    <string name="chat_load_error">Failed to load conversation.</string>
+    <string name="chat_partner_label">%1$s (%2$s)</string>
+
+    <plurals name="dashboard_items_count">
+        <item quantity="one">%d listing loaded</item>
+        <item quantity="other">%d listings loaded</item>
+    </plurals>
+
+    <plurals name="landing_items_count">
+        <item quantity="one">%d listing</item>
+        <item quantity="other">%d listings</item>
+    </plurals>
+
+    <string name="item_price">PHP %1$s</string>
+    <string name="item_meta">%1$s | %2$s | %3$s</string>
+    <string name="item_unknown_title">Untitled item</string>
+    <string name="item_unknown_category">Unknown category</string>
+    <string name="item_unknown_condition">Unknown condition</string>
+    <string name="item_unknown_location">Unknown location</string>
+    <string name="item_unknown_seller">Unknown seller</string>
+    <string name="item_no_description">No description provided.</string>
+    <string name="item_image_desc">Listing image</string>
+    <string name="illustration_desc">Marketplace illustration</string>
 </resources>

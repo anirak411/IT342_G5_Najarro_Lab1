@@ -33,6 +33,12 @@ function ItemDetails() {
     const [activeImage, setActiveImage] = useState("");
     const [loading, setLoading] = useState(true);
     const [loadError, setLoadError] = useState("");
+    const getApiErrorMessage = (error, fallback) => {
+        const data = error?.response?.data;
+        if (!data) return fallback;
+        if (typeof data === "string") return data;
+        return data.detail || data.message || fallback;
+    };
     const formatPrice = (value) =>
         Number(value || 0).toLocaleString("en-PH", {
             minimumFractionDigits: 2,
@@ -110,6 +116,28 @@ function ItemDetails() {
         window.dispatchEvent(new Event("pendingChat"));
     };
 
+    const handleStartEscrow = async () => {
+        if (!resolvedUser.email) {
+            alert("Please log in first.");
+            navigate("/login");
+            return;
+        }
+
+        try {
+            await axios.post("http://localhost:8080/api/transactions", {
+                itemId: item.id,
+                buyerEmail: resolvedUser.email,
+                buyerName: resolvedUser.displayName || resolvedUser.email,
+            });
+            if (window.confirm("Secure purchase started. Open Transactions page now?")) {
+                navigate("/transactions");
+            }
+        } catch (err) {
+            const msg = getApiErrorMessage(err, "Could not start secure purchase.");
+            alert(msg);
+        }
+    };
+
     return (
         <div className="details-page">
             <BackButton className="details-back-btn" fallback="/dashboard" />
@@ -145,7 +173,14 @@ function ItemDetails() {
 
                     <p className="details-seller">
                         Seller:{" "}
-                        <strong>{getCleanSellerName(item.sellerName)}</strong>
+                        <strong
+                            style={{ cursor: "pointer" }}
+                            onClick={() =>
+                                navigate(`/seller/${encodeURIComponent(getCleanSellerName(item.sellerName))}`)
+                            }
+                        >
+                            {getCleanSellerName(item.sellerName)}
+                        </strong>
                     </p>
 
                     <p className="details-location">📍 {item.location}</p>
@@ -163,12 +198,20 @@ function ItemDetails() {
                                 Delete Listing
                             </button>
                         ) : (
-                            <button
-                                className="apple-btn primary small"
-                                onClick={handleMessageSeller}
-                            >
-                                Message Seller
-                            </button>
+                            <>
+                                <button
+                                    className="apple-btn primary small"
+                                    onClick={handleMessageSeller}
+                                >
+                                    Message Seller
+                                </button>
+                                <button
+                                    className="apple-btn danger"
+                                    onClick={handleStartEscrow}
+                                >
+                                    Secure This Purchase
+                                </button>
+                            </>
                         )}
                     </div>
                 </div>

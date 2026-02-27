@@ -7,19 +7,22 @@ public class UserProfileResponse {
     private String email;
     private String profilePicUrl;
     private String coverPicUrl;
+    private String role;
 
     public UserProfileResponse(
             String displayName,
             String fullName,
             String email,
             String profilePicUrl,
-            String coverPicUrl
+            String coverPicUrl,
+            String role
     ) {
         this.displayName = displayName;
         this.fullName = fullName;
         this.email = email;
         this.profilePicUrl = profilePicUrl;
         this.coverPicUrl = coverPicUrl;
+        this.role = role;
     }
 
     public String getDisplayName() {
@@ -40,5 +43,9 @@ public class UserProfileResponse {
 
     public String getCoverPicUrl() {
         return coverPicUrl;
+    }
+
+    public String getRole() {
+        return role;
     }
 }
