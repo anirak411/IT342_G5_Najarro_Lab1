@@ -10,6 +10,7 @@
 - Root directory: `backend`
 - Build command: `./mvnw clean package -DskipTests`
 - Start command: `java -Dserver.port=$PORT -jar target/backend-0.0.1-SNAPSHOT.jar`
+- Health check path: `/health`
 
 Set environment variables in Render:
 
